@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>{{stringService.getString('addSynagogue','he')}}</h2>
+    
+      <div class="form-group">
+        <label>{{stringService.getString('synagogueName','he')}}</label>
+        <input [(ngModel)]="synagogue.synagogueName" class="form-control" placeholder="{{stringService.getString('synagogueName','he')}}">
+      </div>
+      <div class="form-group">
+        <label>{{stringService.getString('synagogueAddress','he')}}</label>
+        <input [(ngModel)]="synagogue.address" class="form-control" placeholder="{{stringService.getString('synagogueAddress','he')}}">
+      </div>
+      <div class="form-group">
+        <button (click)="checkAddress()" class="btn btn-success" data-toggle="modal" data-target="#myModal">{{stringService.getString('checkAdress','he')}}</button>
+      </div>
+      <button (click)="addSynagogue()" class="btn btn-primary">{{stringService.getString('submit','he')}}</button>
+
+
+      <!-- The Modal -->
+      <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+            <app-check-synagogue-address [synagogue]="synagogue"></app-check-synagogue-address>
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>

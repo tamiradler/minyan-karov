@@ -4,19 +4,28 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SenagogMapComponent } from './senagog-map/senagog-map.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './/app-routing.module';
+import { AddSynagogueComponent } from './add-synagogue/add-synagogue.component';
+import { StringsService } from './strings.service';
 
-import { AgmCoreModule } from '@agm/core';
+import { FormsModule } from '@angular/forms';
+import { CheckSynagogueAddressComponent } from './check-synagogue-address/check-synagogue-address.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SenagogMapComponent
+    SenagogMapComponent,
+    AddSynagogueComponent,
+    CheckSynagogueAddressComponent
   ],
   imports: [
-    BrowserModule
-
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [StringsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
