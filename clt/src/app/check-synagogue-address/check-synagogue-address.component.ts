@@ -42,7 +42,7 @@ export class CheckSynagogueAddressComponent implements AfterViewInit {
           
           this.placeMarker(coordinate, this.map);
         }
-      })    
+      })
   }
 
 
@@ -53,7 +53,6 @@ export class CheckSynagogueAddressComponent implements AfterViewInit {
     }
     this.marker = new google.maps.Marker({position: latLng, map: imap});
     this.synagogue.coordinate = this.marker.getPosition().lat() + ":" + this.marker.getPosition().lng();
-    debugger;
   }
 
 

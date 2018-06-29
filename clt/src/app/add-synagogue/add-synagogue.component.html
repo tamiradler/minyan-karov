@@ -1,4 +1,4 @@
-<div class="container">
+<div dir="rtl" class="container">
     <h2>{{stringService.getString('addSynagogue','he')}}</h2>
     
       <div class="form-group">
@@ -9,16 +9,38 @@
         <label>{{stringService.getString('synagogueAddress','he')}}</label>
         <input [(ngModel)]="synagogue.address" class="form-control" placeholder="{{stringService.getString('synagogueAddress','he')}}">
       </div>
+      
       <div class="form-group">
         <button (click)="checkAddress()" class="btn btn-success" data-toggle="modal" data-target="#myModal">{{stringService.getString('checkAdress','he')}}</button>
       </div>
-      <button (click)="addSynagogue()" class="btn btn-primary">{{stringService.getString('submit','he')}}</button>
+      
+      <div class="form-group">
+        <label>{{stringService.getString('nosach','he')}}</label>
+        <select class="form-control">
+          <option *ngFor="let nosach of stringService.getStringArray('nosachArray','he')" value="volvo">{{nosach}}</option>
+        </select>
+      </div>
 
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6" *ngFor="let minyan of synagogue.minyans; let i = index">
+            
+            <app-add-minyan [minyan]="minyan" [synagogue]="synagogue" [index]="i"></app-add-minyan>
+
+          </div>
+        </div>
+      </div>
+
+           
+      <div class="form-group">
+        <button (click)="addSynagogue()" class="btn btn-primary">{{stringService.getString('submit','he')}}</button>
+        <button (click)="addMinyan()" class="btn btn-primary">{{stringService.getString('addMinyan','he')}}</button>
+      </div>
 
       <!-- The Modal -->
       <div class="modal" id="myModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-dialog">
+          <div class="modal-content">
         
           <!-- Modal Header -->
           <div class="modal-header">

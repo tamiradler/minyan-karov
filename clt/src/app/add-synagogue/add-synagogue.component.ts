@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { CheckSynagogueAddressComponent } from '../check-synagogue-address/check-synagogue-address.component';
 import { AddSynagogueInput } from '../AddSynagogueInput';
+import { Minyan } from '../Minyan';
 
 @Component({
   selector: 'app-add-synagogue',
@@ -32,5 +33,12 @@ export class AddSynagogueComponent implements OnInit {
 
   checkAddress() {
     this.checkSynagogueAddressComponent.checkAddress();
+  }
+
+
+  addMinyan() {
+    var minyan: Minyan = new Minyan();
+    minyan.minyanId = this.synagogue.minyans.length + 1 + '';
+    this.synagogue.minyans.push(minyan);
   }
 }

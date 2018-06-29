@@ -11,13 +11,17 @@ import { StringsService } from './strings.service';
 
 import { FormsModule } from '@angular/forms';
 import { CheckSynagogueAddressComponent } from './check-synagogue-address/check-synagogue-address.component';
+import { MinyanNavComponent } from './minyan-nav/minyan-nav.component';
+import { AddMinyanComponent } from './add-minyan/add-minyan.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SenagogMapComponent,
     AddSynagogueComponent,
-    CheckSynagogueAddressComponent
+    CheckSynagogueAddressComponent,
+    MinyanNavComponent,
+    AddMinyanComponent
   ],
   imports: [
     BrowserModule,
