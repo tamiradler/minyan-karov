@@ -1,0 +1,25 @@
+to test on local:
+	./mvnw -DskipTests appengine:devserver
+
+
+gcloud config set project minyan-karov-196709
+
+to deploy:
+	mvn appengine:update
+	
+
+
+to test:
+	mvn appengine:run
+	
+to remove directory	
+	rm -r mydir
+	
+	
+	
+	
+	
+
+mvn appengine:run
+gcloud config set project minyan-karov-196709
+mvn appengine:deploy
