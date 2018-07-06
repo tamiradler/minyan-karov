@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { APP_INITIALIZER } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SenagogMapComponent } from './senagog-map/senagog-map.component';
@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { CheckSynagogueAddressComponent } from './check-synagogue-address/check-synagogue-address.component';
 import { MinyanNavComponent } from './minyan-nav/minyan-nav.component';
 import { AddMinyanComponent } from './add-minyan/add-minyan.component';
+import { GetStringConfigComponent } from './get-string-config/get-string-config.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AddMinyanComponent } from './add-minyan/add-minyan.component';
     AddSynagogueComponent,
     CheckSynagogueAddressComponent,
     MinyanNavComponent,
-    AddMinyanComponent
+    AddMinyanComponent,
+    GetStringConfigComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,10 @@ import { AddMinyanComponent } from './add-minyan/add-minyan.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [StringsService],
+  providers: [
+    StringsService,
+    { provide: APP_INITIALIZER, useFactory: (config: StringsService) => () => config.getSettings(), deps: [StringsService], multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

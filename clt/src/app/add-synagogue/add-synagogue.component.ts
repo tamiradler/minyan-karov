@@ -14,6 +14,7 @@ import { Minyan } from '../Minyan';
 })
 export class AddSynagogueComponent implements OnInit {
   synagogue: Synagogue = new Synagogue();
+  minyanIdCounter: number = 0;
   @ViewChild(CheckSynagogueAddressComponent) checkSynagogueAddressComponent: CheckSynagogueAddressComponent;
 
   constructor(private stringService: StringsService, private http: HttpClient) { }
@@ -27,7 +28,9 @@ export class AddSynagogueComponent implements OnInit {
   addSynagogue() {
     var addSynagogueInput: AddSynagogueInput = new AddSynagogueInput();
     addSynagogueInput.synagogue = this.synagogue;
-    this.http.post(environment.hostUrl+'addSynagogue', addSynagogueInput).subscribe(res=>{});
+    this.http.post(environment.hostUrl+'addSynagogue', addSynagogueInput).subscribe(res=>{
+      console.log(res);      
+    });
   }
 
 
@@ -38,7 +41,9 @@ export class AddSynagogueComponent implements OnInit {
 
   addMinyan() {
     var minyan: Minyan = new Minyan();
-    minyan.minyanId = this.synagogue.minyans.length + 1 + '';
+    minyan.timeType='fixed_hour';
+    minyan.minyanId = this.minyanIdCounter + '';
+    this.minyanIdCounter++;
     this.synagogue.minyans.push(minyan);
   }
 }

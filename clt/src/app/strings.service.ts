@@ -1,80 +1,12 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class StringsService {
-  data: any = {
-    checkAdress: {
-      he: 'בדוק כתובת'
-    },
-    synagogueMap: {
-      he: 'מפת בתי הכנסת'
-    },
-    submit: {
-      he: 'שלח'
-    },
-    addSynagogue: {
-      he: 'הוספת בית כנסת'
-    },
-    addMinyan: {
-      he: 'הוסף מיניין'
-    },
-    Minyan: {
-      he: 'מיניין'
-    },
-    nearbyMinyan: {
-      he: 'מיניין קרוב'
-    },
-    synagogueName: {
-      he: 'שם בית הכנסת'
-    },
-    synagogueAddress: {
-      he: 'כתובת בית הכנסת'
-    },
-    nosach: {
-      he: 'נוסח'
-    },
-    minutes: {
-      he: 'דקות'
-    },
-    nosachArray: [
-      {he: 'נוסח אחיד'},
-      {he: 'עדות המזרח'},
-      {he: 'אשכנז'}
-    ],
-    minyanTypes: [
-      {he: 'שחרית'},
-      {he: 'מנחה'},
-      {he: 'ערבית'}
-    ],
-    timeAtWeek: [
-      {he: 'ימות החול'},
-      {he: 'כל יום'},
-      {he: 'כל יום חוץ משישי שבת'},
-      {he: 'ימים א, ג, ד, ו'},
-      {he: 'ימים א,ג,ד'},
-      {he: 'יום שבת'},
-      {he: 'יום שישי'},
-      {he: 'שני וחמישי'}
-    ],
-    timeTypes: [
-      {he: 'בשעה קבועה'},
-      {he: 'בזמן קבוע'}
-    ],
-    beforeAfter: [
-      {he: 'לפני'},
-      {he: 'אחרי'}
-    ],
-    dayTimes: [
-      {he: 'עלות השחר'},
-      {he: 'הנץ'},
-      {he: 'צאת הכוכבים'},
-      {he: 'זריחה'},
-      {he: 'שקיעה'},
-      {he: 'חצות היום'}
-    ]
-  };
+  data: any;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getString (str: string, language: string): string {
     return this.data[str][language];
@@ -94,4 +26,18 @@ export class StringsService {
     return this.data[str];
   }
 
+
+  getSettings(): Promise<any> {
+    console.log(`getSettings:: before http.get call`);
+    const promise = this.http.get(environment.hostUrl + 'getStringConfiguration')
+      .toPromise()
+      .then(settings => {
+        this.data = settings;        
+        return settings;
+      });
+    return promise;
+  }
+
+
+  
 }

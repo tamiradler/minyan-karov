@@ -1,13 +1,14 @@
 export class Minyan {
-	senagogId: String;
-	minyanId: String;
-	type: String;
-	time: String;
-	isFixedTime: String;
-	isDakotLifney: String;
-	dakotLifneyAcharey: String;
-	dayTime: String;
-	isSequense: String;
-	kolKamaZman: String;
-	dayAtWeek: String;
+	senagogId: string;
+	minyanId: string;
+	type: string;
+	time: string;
+	isFixedTime: string;
+	isDakotLifney: string;
+	dakotLifneyAcharey: string;
+	dayTime: string;
+	isSequense: string;
+	kolKamaZman: string;
+	dayAtWeek: string;
+	timeType: string;
 }

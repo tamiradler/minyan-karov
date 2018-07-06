@@ -16,8 +16,8 @@
       
       <div class="form-group">
         <label>{{stringService.getString('nosach','he')}}</label>
-        <select class="form-control">
-          <option *ngFor="let nosach of stringService.getStringArray('nosachArray','he')" value="volvo">{{nosach}}</option>
+        <select class="form-control" [(ngModel)]="synagogue.nosach">
+          <option [ngValue]="nosach.code" *ngFor="let nosach of stringService.getStringObjArray('nosachArray')">{{nosach['he']}}</option>
         </select>
       </div>
 

@@ -3,35 +3,47 @@
     <h5 class="card-title">{{stringService.getString('Minyan',language)}}</h5>
     <div class="form-group">
       <select class="form-control">
-        <option *ngFor="let nosach of stringService.getStringObjArray('minyanTypes')" value="volvo">{{nosach[language]}}</option>
+        <option *ngFor="let stringObj of stringService.getStringObjArray('minyanTypes')" value="volvo">{{stringObj[language]}}</option>
       </select>
     </div>
     <div class="form-group">
       <select class="form-control">
-        <option *ngFor="let nosach of stringService.getStringObjArray('timeAtWeek')" value="volvo">{{nosach[language]}}</option>
+        <option *ngFor="let stringObj of stringService.getStringObjArray('timeAtWeek')" value="volvo">{{stringObj[language]}}</option>
       </select>
     </div>
     <div class="form-group">
-      <select class="form-control">
-        <option *ngFor="let nosach of stringService.getStringObjArray('timeTypes')" value="volvo">{{nosach[language]}}</option>
+      <select class="form-control" [(ngModel)]="minyan.timeType">
+        <option 
+          *ngFor="let stringObj of stringService.getStringObjArray('timeTypes')"
+          [ngValue]="stringObj.code">
+            {{stringObj[language]}}
+        </option>
       </select>
     </div>
 
-    <div class="form-group">
-        <input maxlength="4" style="max-width: 50px;" [(ngModel)]="synagogue.synagogueName" class="form-control" placeholder="{{stringService.getString('minutes','he')}}">
-        <label>{{stringService.getString('minutes','he')}}</label>
+    <div *ngIf="minyan.timeType==='fixed_time'">
+      <div class="form-group" >
+          <input type="number" min="0" max="300" style="max-width: 50px;" [(ngModel)]="synagogue.synagogueName" placeholder="{{stringService.getString('minutes','he')}}">
+          <label>{{stringService.getString('minutes','he')}}</label>
+      </div>
+      <div class="form-group">
+        <select class="form-control">
+          <option *ngFor="let stringObj of stringService.getStringObjArray('beforeAfter')">{{stringObj[language]}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select class="form-control">
+          <option *ngFor="let stringObj of stringService.getStringObjArray('dayTimes')" value="volvo">{{stringObj[language]}}</option>
+        </select>
+      </div>
     </div>
 
-    <div class="form-group">
-      <select class="form-control">
-        <option *ngFor="let nosach of stringService.getStringObjArray('beforeAfter')" value="volvo">{{nosach[language]}}</option>
-      </select>
+
+    <div class="form-group" *ngIf="minyan.timeType==='fixed_hour'">
+      <input type="time">
     </div>
-    <div class="form-group">
-      <select class="form-control">
-        <option *ngFor="let nosach of stringService.getStringObjArray('dayTimes')" value="volvo">{{nosach[language]}}</option>
-      </select>
-    </div>
+
+    
     <button class="btn btn-danger" (click)="removeMinyan(index)">מחק</button>
   </div>
 </div>

@@ -52,6 +52,10 @@ export class SenagogMapComponent implements AfterViewInit   {
   drowSynagogueOnMap(synagogue: Synagogue) {
     console.log(synagogue.synagogueName);
     var coordinate: string = synagogue.coordinate;
+    if (coordinate === undefined || coordinate === null || coordinate.trim() === '')
+    {
+      return;
+    }
     var latLan: string[] = coordinate.split(':');
     var telAviv = new google.maps.LatLng(parseFloat(latLan[0]), parseFloat(latLan[1]));
     var marker = new google.maps.Marker({position: telAviv, map: this.map});

@@ -27,4 +27,9 @@ export class AddMinyanComponent implements OnInit {
     console.log(ind);
     console.log(this.synagogue.minyans);
   }
+
+
+  print(s: any) {
+    console.log(s);
+  }
 }
