@@ -13,5 +13,6 @@ matrix:
       before_script:
         - cd clt
         - npm install -g @angular/cli
+        - npm install
       script:
         - ng build
