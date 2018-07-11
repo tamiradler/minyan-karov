@@ -5,6 +5,6 @@ export class Synagogue {
 	synagogueName: string;
 	address: string;
 	coordinate: string;
-	nosach: string;
+	nosach: string = 'nosach_ahid';
 	minyans: Minyan[] = [];
 }

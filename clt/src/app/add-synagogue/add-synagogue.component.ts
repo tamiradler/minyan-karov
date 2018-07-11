@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren } from '@angular/core';
 import { StringsService } from '../strings.service';
 import { Synagogue } from '../Synagogue';
 import { HttpClient } from '@angular/common/http';
@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { CheckSynagogueAddressComponent } from '../check-synagogue-address/check-synagogue-address.component';
 import { AddSynagogueInput } from '../AddSynagogueInput';
 import { Minyan } from '../Minyan';
+import { AddMinyanComponent } from '../add-minyan/add-minyan.component';
 
 @Component({
   selector: 'app-add-synagogue',
@@ -15,7 +16,10 @@ import { Minyan } from '../Minyan';
 export class AddSynagogueComponent implements OnInit {
   synagogue: Synagogue = new Synagogue();
   minyanIdCounter: number = 0;
+  errors: String[] = [];
   @ViewChild(CheckSynagogueAddressComponent) checkSynagogueAddressComponent: CheckSynagogueAddressComponent;
+  @ViewChildren(AddMinyanComponent) addMinyanComponents: AddMinyanComponent[];
+
 
   constructor(private stringService: StringsService, private http: HttpClient) { }
 
@@ -29,7 +33,12 @@ export class AddSynagogueComponent implements OnInit {
     var addSynagogueInput: AddSynagogueInput = new AddSynagogueInput();
     addSynagogueInput.synagogue = this.synagogue;
     this.http.post(environment.hostUrl+'addSynagogue', addSynagogueInput).subscribe(res=>{
-      console.log(res);      
+      this.errors = res['errors']['synagogue'];
+      console.log(this.addMinyanComponents.length);
+      this.addMinyanComponents.forEach(value => {
+        var addMinyanComponent: AddMinyanComponent = value;
+        addMinyanComponent.setErrors(res['errors']);
+      });
     });
   }
 
@@ -41,7 +50,6 @@ export class AddSynagogueComponent implements OnInit {
 
   addMinyan() {
     var minyan: Minyan = new Minyan();
-    minyan.timeType='fixed_hour';
     minyan.minyanId = this.minyanIdCounter + '';
     this.minyanIdCounter++;
     this.synagogue.minyans.push(minyan);

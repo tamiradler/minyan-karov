@@ -14,12 +14,11 @@ export class AddMinyanComponent implements OnInit {
   @Input() synagogue: Synagogue;
   @Input() index: number;
   language: string = 'he';
-
+  errors: String[] = [];
 
   constructor(private stringService: StringsService) { }
 
   ngOnInit() {
-    console.log(this.minyan.minyanId);
   }
 
   removeMinyan(ind: number) {
@@ -29,7 +28,12 @@ export class AddMinyanComponent implements OnInit {
   }
 
 
-  print(s: any) {
-    console.log(s);
+  setErrors(errors: any) {
+    if (errors[this.index] == undefined) {
+      this.errors = [];
+    } else {
+      this.errors = errors[this.index];
+    }
+    console.log('minyan errors:' , this.errors);
   }
 }

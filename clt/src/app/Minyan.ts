@@ -1,14 +1,14 @@
 export class Minyan {
 	senagogId: string;
 	minyanId: string;
-	type: string;
+	type: string = 'shharit';
 	time: string;
 	isFixedTime: string;
-	isDakotLifney: string;
+	isDakotLifney: string = 'before';
 	dakotLifneyAcharey: string;
-	dayTime: string;
+	dayTime: string = 'alot_hashahar';
 	isSequense: string;
 	kolKamaZman: string;
-	dayAtWeek: string;
-	timeType: string;
+	dayAtWeek: string = 'regular_days';
+	timeType: string = 'fixed_hour';
 }
