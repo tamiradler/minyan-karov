@@ -5,7 +5,7 @@ matrix:
       before_script:
         - cd srv
       script:
-        - ./mvnw clean install -B
+        - mvn clean install
 
     - language: node_js
       before_script:
