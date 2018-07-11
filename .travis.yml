@@ -8,7 +8,10 @@ matrix:
         - mvn clean install
 
     - language: node_js
+      node_js:
+        - "8"
       before_script:
         - cd clt
+        - npm install -g @angular/cli
       script:
-        - npm install
+        - ng build
