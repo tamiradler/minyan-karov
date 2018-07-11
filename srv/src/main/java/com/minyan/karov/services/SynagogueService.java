@@ -17,6 +17,10 @@ import com.minyan.karov.entities.validators.SynagogueValidator;
 @RestController
 public class SynagogueService {
 	
+	@Autowired
+	SynagogueValidator synagogueValidator;
+	
+	
 	static List <Synagogue> synagogues = new ArrayList<>(); 
 	
 	@CrossOrigin
@@ -26,14 +30,6 @@ public class SynagogueService {
 		GetAllSynagoguesOutput getAllSynagoguesOutput = new GetAllSynagoguesOutput();
 		try 
 		{
-			Synagogue s = new Synagogue();
-			s.setSynagogueId("yyyyyyyyyy");
-			s.setSynagogueName("אוהל בלהה");
-			s.setCoordinate("32.086718:34.789760");
-			
-			Minyan m = new Minyan();
-			s.addMinyan(m);
-			m.setMinyanId("sdfsdf");
 			getAllSynagoguesOutput.setSynagogues(synagogues);
 		}
 		catch (Exception e) 
@@ -54,9 +50,6 @@ public class SynagogueService {
 	
 	
 	
-	@Autowired
-	private ApplicationContext context;
-	
 	@CrossOrigin
 	@PostMapping("/addSynagogue")
   	public AddSynagogueOutput addSynagogue(@RequestBody AddSynagogueInput addSynagogueInput)
@@ -64,8 +57,10 @@ public class SynagogueService {
 		AddSynagogueOutput addSynagogueOutput = new AddSynagogueOutput();
 		try 
 		{
-			SynagogueValidator synagogueValidator = new SynagogueValidator();
 			synagogueValidator.validate(addSynagogueInput.getSynagogue(), addSynagogueOutput);
+			if (addSynagogueOutput.getErrors() != null && addSynagogueOutput.getErrors().size() > 0) {
+				return addSynagogueOutput;
+			}
 			synagogues.add(addSynagogueInput.getSynagogue());
 		}
 		catch (Exception e) 

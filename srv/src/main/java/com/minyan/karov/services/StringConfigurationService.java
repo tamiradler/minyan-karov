@@ -24,16 +24,20 @@ public class StringConfigurationService {
 	@CrossOrigin
 	@GetMapping("/getStringConfiguration")
 	public Map getStringConfiguration() throws JsonParseException, JsonMappingException, FileNotFoundException, IOException {
-		ObjectMapper objectMapper = new ObjectMapper();;
+		ObjectMapper objectMapper = new ObjectMapper();
 		Map<?,?> empMap = objectMapper.readValue(new FileInputStream("stringConfiguration.json"),Map.class);
 		return empMap;
 	}
+	
+	
 	
 	
 	public List<?> getStringObjArray(String str) throws JsonParseException, JsonMappingException, FileNotFoundException, IOException {
 		Map<?,?> map = getStringConfiguration();
 		return (List<?>) map.get(str);
 	}
+	
+	
 	
 	
 	public List<String> getStringArrayForLanguage(String str, String language) throws JsonParseException, JsonMappingException, FileNotFoundException, IOException {
@@ -46,6 +50,16 @@ public class StringConfigurationService {
 		}
 		return  toReturn;
 	}
+	
+	
+	
+	
+	public boolean isValueContain(String value, String arrayName, String language) throws JsonParseException, JsonMappingException, FileNotFoundException, IOException {
+		return getStringArrayForLanguage(arrayName, language).contains(value);
+	}
+	
+	
+	
 	
 	
 	@CrossOrigin

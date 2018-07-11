@@ -1,4 +1,19 @@
 {
+  "minyan_DakotLifneyAcharey_error_value": {
+  	"he": "אנא הכנס מפר תקין לדקות"
+  },
+  "minyan_Time_error_value": {
+  	"he": "אנא הכנס שעה נכונה"
+  },
+  "synagogue_address_empty": {
+  	"he": "אנא הכנס את כתובת בית הכנסת"
+  },
+  "synagogue_name_empty": {
+  	"he": "אנא הכנס את שם בית הכנסת"
+  },
+  "synagogue_coordinate_empty": {
+  	"he": "אנא בדוק את הכתובת"
+  },
   "checkAdress": {
     "he": "בדוק כתובת"
   },

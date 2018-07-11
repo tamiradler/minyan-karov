@@ -1,11 +1,20 @@
 package com.minyan.karov.entities.validators;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.minyan.karov.entities.Minyan;
 import com.minyan.karov.entities.Synagogue;
 import com.minyan.karov.services.PutError;
 
+@Component
 public class SynagogueValidator {
 
+	@Autowired
+	private MinyanValidator minyanValidator;
+	
+	
+	
 	public void validate(Synagogue synagogue, PutError putError) {
 		if (synagogue.getAddress() == null || synagogue.getAddress().trim().equals("")) {
 			putError.putError("synagogue", "synagogue_address_empty");
@@ -27,7 +36,6 @@ public class SynagogueValidator {
 			return;
 		}
 		
-		MinyanValidator minyanValidator = new MinyanValidator();
 		for (Minyan minyan : synagogue.getMinyans())
 		{
 			minyanValidator.validate(minyan, putError);

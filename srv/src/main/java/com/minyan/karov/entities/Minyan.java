@@ -40,6 +40,20 @@ public class Minyan
 	private String dayAtWeek;
 	
 	
+	@Column
+	private String timeType;
+	
+	
+	public String getTimeType() {
+		return timeType;
+	}
+
+
+	public void setTimeType(String timeType) {
+		this.timeType = timeType;
+	}
+
+
 	public String getSenagogId() 
 	{
 		return senagogId;
