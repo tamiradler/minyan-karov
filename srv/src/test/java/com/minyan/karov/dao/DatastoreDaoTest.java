@@ -7,8 +7,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.minyan.karov.entities.Synagogue;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class DatastoreDaoTest {
 
 	@Test
