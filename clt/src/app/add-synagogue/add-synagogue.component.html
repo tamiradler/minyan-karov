@@ -4,17 +4,17 @@
       <div class="form-group">
         <label>{{stringService.getString('synagogueName','he')}}</label>
         <input [(ngModel)]="synagogue.synagogueName" class="form-control" placeholder="{{stringService.getString('synagogueName','he')}}">
-        <label *ngIf="errors.includes('synagogue_name_empty')">{{stringService.getString('synagogue_name_empty','he')}}</label>
+        <label class="alert alert-danger" role="alert" *ngIf="errors.includes('synagogue_name_empty')">{{stringService.getString('synagogue_name_empty','he')}}</label>
       </div>
       <div class="form-group">
         <label>{{stringService.getString('synagogueAddress','he')}}</label>
         <input [(ngModel)]="synagogue.address" class="form-control" placeholder="{{stringService.getString('synagogueAddress','he')}}">
-        <label *ngIf="errors.includes('synagogue_address_empty')">{{stringService.getString('synagogue_address_empty','he')}}</label>
+        <label class="alert alert-danger" role="alert" *ngIf="errors.includes('synagogue_address_empty')">{{stringService.getString('synagogue_address_empty','he')}}</label>
       </div>
       
       <div class="form-group">
         <button (click)="checkAddress()" class="btn btn-success" data-toggle="modal" data-target="#myModal">{{stringService.getString('checkAdress','he')}}</button>
-        <label *ngIf="errors.includes('synagogue_coordinate_empty')">{{stringService.getString('synagogue_coordinate_empty','he')}}</label>
+        <label class="alert alert-danger" role="alert" *ngIf="errors.includes('synagogue_coordinate_empty')">{{stringService.getString('synagogue_coordinate_empty','he')}}</label>
       </div>
       
       <div class="form-group">
