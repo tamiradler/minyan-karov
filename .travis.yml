@@ -4,3 +4,5 @@ matrix:
       jdk: oraclejdk8
       before_script:
         - cd srv
+      script:
+        - mvn clean install
