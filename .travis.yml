@@ -8,7 +8,7 @@ matrix:
         - mvn clean install
       deploy:
         provider: gae
-        keyfile: "minyan-karov-a6aafc2e654d.json.enc"
+        keyfile: "minyan-karov-a6aafc2e654d.json"
         project: "minyan-karov-210003"
   
   
