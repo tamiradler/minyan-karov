@@ -7,6 +7,10 @@ matrix:
       script:
         - mvn clean install
 
+      deploy:
+        - keyfile: "minyan-karov-a6aafc2e654d.json.enc"
+        - project: "minyan-karov-210003"
+  
     - language: node_js
       node_js:
         - "8"
