@@ -1,5 +1,6 @@
 package com.minyan.karov.services;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,7 +28,14 @@ public class StringConfigurationService {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map empMap = new HashMap<>();
 		try {
+			File file = new File(".");
+			for(String fileNames : file.list()) System.out.println(fileNames);
+			
 			empMap = objectMapper.readValue(new FileInputStream("stringConfiguration.json"),Map.class);
+			
+			
+			
+			
 			return empMap;
 		} catch (Exception e) {
 			empMap.put("exception", e);
