@@ -25,8 +25,14 @@ public class StringConfigurationService {
 	@GetMapping("/getStringConfiguration")
 	public Map getStringConfiguration() throws JsonParseException, JsonMappingException, FileNotFoundException, IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
-		Map<?,?> empMap = objectMapper.readValue(new FileInputStream("stringConfiguration.json"),Map.class);
-		return empMap;
+		Map empMap = new HashMap<>();
+		try {
+			empMap = objectMapper.readValue(new FileInputStream("stringConfiguration.json"),Map.class);
+			return empMap;
+		} catch (Exception e) {
+			empMap.put("exception", e);
+			return empMap;
+		}
 	}
 	
 	
