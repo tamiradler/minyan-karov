@@ -6,10 +6,10 @@ matrix:
         - cd srv
       script:
         - mvn clean install
-      deploy:
-        provider: gae
-        keyfile: "minyan-karov-a6aafc2e654d.json"
-        project: "minyan-karov-210003"
+ #     deploy:
+ #       provider: gae
+ #       keyfile: "minyan-karov-a6aafc2e654d.json"
+ #       project: "minyan-karov-210003"
   
   
     - language: node_js
