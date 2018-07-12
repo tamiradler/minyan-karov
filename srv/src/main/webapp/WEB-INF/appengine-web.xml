@@ -1,6 +1,6 @@
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-  <application>minyan-karov-196709</application>
-  <version>20180301t115625</version>
+  <application>minyan-karov-210003</application>
+  <version>20180712t064633</version>
   <threadsafe>true</threadsafe>
   <runtime>java8</runtime>
   <url-stream-handler>urlfetch</url-stream-handler>
