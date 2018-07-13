@@ -27,8 +27,13 @@ mvn appengine:deploy
 
 
 
+rm -rf minyan-karov
+git clone https://github.com/tamiradler/minyan-karov.git
+cd minyan-karov/srv
+mvn appengine:update
 
-git https://github.com/tamiradler/minyan-karov.git
-cd srv
+
+
+
 mvn appengine:run
 mvn appengine:deploy
