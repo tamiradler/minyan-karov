@@ -33,7 +33,11 @@ export class AddSynagogueComponent implements OnInit {
     var addSynagogueInput: AddSynagogueInput = new AddSynagogueInput();
     addSynagogueInput.synagogue = this.synagogue;
     this.http.post(environment.hostUrl+'addSynagogue', addSynagogueInput).subscribe(res=>{
-      this.errors = res['errors']['synagogue'];
+      if (res['errors']['synagogue'] == undefined) {
+        this.errors = [];
+      } else {
+        this.errors = res['errors']['synagogue'];
+      }
       console.log(this.addMinyanComponents.length);
       this.addMinyanComponents.forEach(value => {
         var addMinyanComponent: AddMinyanComponent = value;
