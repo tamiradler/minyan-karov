@@ -1,9 +1,8 @@
 package com.minyan.karov.services;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,24 +23,12 @@ public class StringConfigurationService {
 	
 	@CrossOrigin
 	@GetMapping("/getStringConfiguration")
-	public Map getStringConfiguration() throws JsonParseException, JsonMappingException, FileNotFoundException, IOException {
+	public Map <?,?> getStringConfiguration() throws JsonParseException, JsonMappingException, FileNotFoundException, IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
-		List<String> list=new  ArrayList<>();
-		Map empMap = new HashMap<>();
-		try {
-			File file = new File(".");
-			for(String fileNames : file.list()) list.add(fileNames);
-			empMap = objectMapper.readValue(new FileInputStream("stringConfiguration.json"),Map.class);
-			
-			
-			
-			
-			return empMap;
-		} catch (Exception e) {
-			empMap.put("exception", e);
-			empMap.put("list", list);
-			return empMap;
-		}
+		Map <?,?> empMap = new HashMap<>();
+		URL url = new URL("https://rawgit.com/tamiradler/minyan-karov/master/srv/src/stringConfiguration.json");
+		empMap = objectMapper.readValue(url.openStream(),Map.class);
+		return empMap;
 	}
 	
 	
