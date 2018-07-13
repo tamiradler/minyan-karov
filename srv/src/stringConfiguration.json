@@ -1,4 +1,7 @@
 {
+  "signIn": {
+  	"he": "התחבר"
+  },
   "minyan_DakotLifneyAcharey_error_value": {
   	"he": "אנא הכנס מפר תקין לדקות"
   },
