@@ -71,6 +71,12 @@ export class SignInService {
     console.log('AuthResponse',googleUser.getAuthResponse());
     console.log('profile',profile);
   }
+
+
+  public disconnect() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.disconnect();
+  }
 }
 
 
