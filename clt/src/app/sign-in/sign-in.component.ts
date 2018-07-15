@@ -40,8 +40,9 @@ export class SignInComponent implements OnInit, AfterViewInit {
         cookiepolicy: 'single_host_origin',
         scope: this.scope
       });
-      this.attachSignin(this.element.nativeElement.firstChild);
-      gapi.signin2.render(this.element.nativeElement.firstChild);
+      var googleButton = document.getElementById("google-button");
+      this.attachSignin(googleButton);
+      gapi.signin2.render(googleButton);
     });
   }
 
@@ -56,8 +57,11 @@ export class SignInComponent implements OnInit, AfterViewInit {
         console.log('Name: ' + profile.getName());
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail());
-        //YOUR CODE HERE
 
+        console.log('googleUser',googleUser);
+        console.log('AuthResponse',googleUser.getAuthResponse());
+        console.log('profile',profile);
+        
 
       }, (error) => {
         alert(JSON.stringify(error, undefined, 2));
