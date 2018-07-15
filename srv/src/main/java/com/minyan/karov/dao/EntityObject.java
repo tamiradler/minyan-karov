@@ -1,5 +1,4 @@
 package com.minyan.karov.dao;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,5 +47,11 @@ public class EntityObject
 	public void setProperty(String key, Object value)
 	{
 		properties.put(key, value);
+	}
+	
+	
+	public void setProperties(Map <String, Object> properties)
+	{
+		this.properties = properties;
 	}
 }
