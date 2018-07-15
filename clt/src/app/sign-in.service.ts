@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SignInIfc } from './sign-in-ifc';
+import { element } from 'protractor';
 
 declare const gapi: any;
 
@@ -22,7 +23,7 @@ export class SignInService {
   public attachSignin(signInIfc: SignInIfc) {
     this.auth2.attachClickHandler(signInIfc.getGoogleButton(), {},
       (googleUser) => {
-        this.userSignedIn(googleUser, signInIfc);
+        this.userSignedIn(googleUser);
       }, (error) => {
         alert(JSON.stringify(error, undefined, 2));
       });
@@ -52,7 +53,7 @@ export class SignInService {
         console.log('tamiradler',this.auth2.isSignedIn.get()); //now this always returns correctly
         if (this.auth2.isSignedIn.get()) {
           var googleUser = this.auth2.currentUser.get();
-          this.userSignedIn(googleUser, signInIfc);
+          this.userSignedIn(googleUser);
         }
         if (signInIfc.getGoogleButton() != undefined && signInIfc.getGoogleButton() != null) {
           this.attachSignin(signInIfc);   
@@ -80,9 +81,11 @@ export class SignInService {
 
 
 
-  userSignedIn(googleUser: any, signInIfc: SignInIfc) {
+  userSignedIn(googleUser: any) {
     this.printUserDetails(googleUser);
-    signInIfc.userSignedIn();
+    this.signInIfcs.forEach(element=>{
+      element.userSignedIn();
+    })
   }
 
 
@@ -90,6 +93,9 @@ export class SignInService {
   public disconnect() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.disconnect();
+    this.signInIfcs.forEach(element=>{
+      element.userDisconnected();
+    })
   }
 }
 

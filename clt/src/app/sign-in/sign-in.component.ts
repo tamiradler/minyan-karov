@@ -11,6 +11,13 @@ import { SignInIfc } from '../sign-in-ifc';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit, AfterViewInit, SignInIfc {
+  
+  
+  userDisconnected(): void {
+    
+  }
+
+
   userSignedIn(): void {
     
   }
