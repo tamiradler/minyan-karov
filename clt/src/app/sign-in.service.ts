@@ -15,13 +15,14 @@ export class SignInService {
   private clientId:string = '322558399464-cjdske3cg04b0o6v2p17k98pp00vn8pl.apps.googleusercontent.com';
   public auth2: any;
 
+  signInIfcs: SignInIfc[] = [];
 
 
 
-  public attachSignin(element) {
-    this.auth2.attachClickHandler(element, {},
+  public attachSignin(signInIfc: SignInIfc) {
+    this.auth2.attachClickHandler(signInIfc.getGoogleButton(), {},
       (googleUser) => {
-        this.printUserDetails(googleUser);
+        this.userSignedIn(googleUser, signInIfc);
       }, (error) => {
         alert(JSON.stringify(error, undefined, 2));
       });
@@ -40,6 +41,7 @@ export class SignInService {
 
 
   public googleInit(signInIfc: SignInIfc) {
+    this.signInIfcs.push(signInIfc);
     gapi.load('auth2', () => {
       gapi.auth2.init({
         client_id: this.clientId,
@@ -50,10 +52,10 @@ export class SignInService {
         console.log('tamiradler',this.auth2.isSignedIn.get()); //now this always returns correctly
         if (this.auth2.isSignedIn.get()) {
           var googleUser = this.auth2.currentUser.get();
-          this.printUserDetails(googleUser);
+          this.userSignedIn(googleUser, signInIfc);
         }
         if (signInIfc.getGoogleButton() != undefined && signInIfc.getGoogleButton() != null) {
-          this.attachSignin(signInIfc.getGoogleButton());   
+          this.attachSignin(signInIfc);   
           gapi.signin2.render(signInIfc.getGoogleButton());
         }
       });
@@ -74,6 +76,15 @@ export class SignInService {
     console.log('AuthResponse',googleUser.getAuthResponse());
     console.log('profile',profile);
   }
+
+
+
+
+  userSignedIn(googleUser: any, signInIfc: SignInIfc) {
+    this.printUserDetails(googleUser);
+    signInIfc.userSignedIn();
+  }
+
 
 
   public disconnect() {

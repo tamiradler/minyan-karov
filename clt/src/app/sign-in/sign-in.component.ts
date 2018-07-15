@@ -12,7 +12,7 @@ import { SignInIfc } from '../sign-in-ifc';
 })
 export class SignInComponent implements OnInit, AfterViewInit, SignInIfc {
   userSignedIn(): void {
-    throw new Error("Method not implemented.");
+    
   }
   getGoogleButton() {
     return document.getElementById("google-button");
