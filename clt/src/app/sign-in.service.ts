@@ -20,18 +20,7 @@ export class SignInService {
   public attachSignin(element) {
     this.auth2.attachClickHandler(element, {},
       (googleUser) => {
-        let profile = googleUser.getBasicProfile();
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-
-        console.log('googleUser',googleUser);
-        console.log('AuthResponse',googleUser.getAuthResponse());
-        console.log('profile',profile);
-        
-
+        this.printUserDetails(googleUser);
       }, (error) => {
         alert(JSON.stringify(error, undefined, 2));
       });
@@ -51,14 +40,37 @@ export class SignInService {
 
   public googleInit(googleButton: any) {
     gapi.load('auth2', () => {
-      this.auth2 = gapi.auth2.init({
+      gapi.auth2.init({
         client_id: this.clientId,
         cookiepolicy: 'single_host_origin',
         scope: this.scope
+      }).then(() => {
+        this.auth2 = gapi.auth2.getAuthInstance();
+        console.log('tamiradler',this.auth2.isSignedIn.get()); //now this always returns correctly
+        if (this.auth2.isSignedIn.get()) {
+          var googleUser = this.auth2.currentUser.get();
+          this.printUserDetails(googleUser);
+        }
+        this.attachSignin(googleButton);   
       });
-
-      this.attachSignin(googleButton);
       gapi.signin2.render(googleButton);
     });
   }
+
+
+
+  printUserDetails(googleUser: any) {
+    let profile = googleUser.getBasicProfile();
+    console.log('Token || ' + googleUser.getAuthResponse().id_token);
+    console.log('ID: ' + profile.getId());
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+
+    console.log('googleUser',googleUser);
+    console.log('AuthResponse',googleUser.getAuthResponse());
+    console.log('profile',profile);
+  }
 }
+
+
