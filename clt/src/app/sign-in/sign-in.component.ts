@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { StringsService } from '../strings.service';
 import { SignInService } from '../sign-in.service';
+import { SignInIfc } from '../sign-in-ifc';
 
 
 
@@ -9,7 +10,13 @@ import { SignInService } from '../sign-in.service';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SignInComponent implements OnInit, AfterViewInit {
+export class SignInComponent implements OnInit, AfterViewInit, SignInIfc {
+  userSignedIn(): void {
+    throw new Error("Method not implemented.");
+  }
+  getGoogleButton() {
+    return document.getElementById("google-button");
+  }
 
   constructor(private stringService: StringsService, private signInService: SignInService) {
     
@@ -24,8 +31,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit(): void {
-    var googleButton = document.getElementById("google-button");
-    this.signInService.googleInit(googleButton);
+    this.signInService.googleInit(this);
   }
 
 

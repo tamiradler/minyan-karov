@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SignInIfc } from './sign-in-ifc';
 
 declare const gapi: any;
 
@@ -38,7 +39,7 @@ export class SignInService {
   ].join(' ');
 
 
-  public googleInit(googleButton: any) {
+  public googleInit(signInIfc: SignInIfc) {
     gapi.load('auth2', () => {
       gapi.auth2.init({
         client_id: this.clientId,
@@ -51,9 +52,11 @@ export class SignInService {
           var googleUser = this.auth2.currentUser.get();
           this.printUserDetails(googleUser);
         }
-        this.attachSignin(googleButton);   
+        if (signInIfc.getGoogleButton() != undefined && signInIfc.getGoogleButton() != null) {
+          this.attachSignin(signInIfc.getGoogleButton());   
+          gapi.signin2.render(signInIfc.getGoogleButton());
+        }
       });
-      gapi.signin2.render(googleButton);
     });
   }
 
