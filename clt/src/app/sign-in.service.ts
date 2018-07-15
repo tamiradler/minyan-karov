@@ -50,7 +50,7 @@ export class SignInService {
         scope: this.scope
       }).then(() => {
         this.auth2 = gapi.auth2.getAuthInstance();
-        console.log('tamiradler',this.auth2.isSignedIn.get()); //now this always returns correctly
+        console.log('tamiradler',this.auth2.isSignedIn.get());
         if (this.auth2.isSignedIn.get()) {
           var googleUser = this.auth2.currentUser.get();
           this.userSignedIn(googleUser);
