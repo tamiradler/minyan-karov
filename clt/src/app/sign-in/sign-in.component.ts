@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { StringsService } from '../strings.service';
 import { SignInService } from '../sign-in.service';
 import { SignInIfc } from '../sign-in-ifc';
+import { PsotUserOutput } from '../post-user-output';
 
 
 
@@ -18,7 +19,7 @@ export class SignInComponent implements OnInit, AfterViewInit, SignInIfc {
   }
 
 
-  userSignedIn(): void {
+  userSignedIn(psotUserOutput: PsotUserOutput): void {
     
   }
   getGoogleButton() {
@@ -26,7 +27,7 @@ export class SignInComponent implements OnInit, AfterViewInit, SignInIfc {
   }
 
   constructor(private stringService: StringsService, private signInService: SignInService) {
-    
+    signInService.subscribe(this);
   }
 
 

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { SignInIfc } from './sign-in-ifc';
-import { element } from 'protractor';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { PsotUserInput } from './psot-user-input';
+import { PsotUserOutput } from './post-user-output';
 
 declare const gapi: any;
 
@@ -9,9 +12,15 @@ declare const gapi: any;
 })
 export class SignInService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
     
   }
+
+
+  subscribe(signInIfc: SignInIfc) {
+    this.signInIfcs.push(signInIfc);
+  }
+
 
   private clientId:string = '322558399464-cjdske3cg04b0o6v2p17k98pp00vn8pl.apps.googleusercontent.com';
   public auth2: any;
@@ -42,7 +51,6 @@ export class SignInService {
 
 
   public googleInit(signInIfc: SignInIfc) {
-    this.signInIfcs.push(signInIfc);
     gapi.load('auth2', () => {
       gapi.auth2.init({
         client_id: this.clientId,
@@ -51,13 +59,13 @@ export class SignInService {
       }).then(() => {
         this.auth2 = gapi.auth2.getAuthInstance();
         console.log('tamiradler',this.auth2.isSignedIn.get());
-        if (this.auth2.isSignedIn.get()) {
-          var googleUser = this.auth2.currentUser.get();
-          this.userSignedIn(googleUser);
-        }
+        
         if (signInIfc.getGoogleButton() != undefined && signInIfc.getGoogleButton() != null) {
           this.attachSignin(signInIfc);   
           gapi.signin2.render(signInIfc.getGoogleButton());
+        } else if (this.auth2.isSignedIn.get()) {
+          var googleUser = this.auth2.currentUser.get();
+          this.userSignedIn(googleUser);
         }
       });
     });
@@ -83,9 +91,18 @@ export class SignInService {
 
   userSignedIn(googleUser: any) {
     this.printUserDetails(googleUser);
-    this.signInIfcs.forEach(element=>{
-      element.userSignedIn();
-    })
+    let psotUserInput: PsotUserInput = new PsotUserInput();
+    psotUserInput.tokenId = googleUser.getAuthResponse().id_token;
+    this.http.post(environment.hostUrl+'psotUser', psotUserInput).subscribe(
+      res=>{
+        console.log('userSignedIn',res);
+        this.signInIfcs.forEach(element=>{
+          let PsotUserOutput: PsotUserOutput = res as PsotUserOutput;
+          console.log('userSignedIn',PsotUserOutput);
+          element.userSignedIn(PsotUserOutput);
+        })
+      }
+    )
   }
 
 

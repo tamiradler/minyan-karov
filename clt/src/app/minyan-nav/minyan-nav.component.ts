@@ -3,6 +3,7 @@ import { StringsService } from '../strings.service';
 import { Router } from '@angular/router';
 import { SignInIfc } from '../sign-in-ifc';
 import { SignInService } from '../sign-in.service';
+import { PsotUserOutput } from '../post-user-output';
 
 @Component({
   selector: 'app-minyan-nav',
@@ -33,10 +34,10 @@ export class MinyanNavComponent implements OnInit, SignInIfc, AfterViewInit {
 
 
 
-  userSignedIn(): void {
+  userSignedIn(psotUserOutput: PsotUserOutput): void {
     this.ngZone.run(
       () => {
-        this.signInStr = 'hellow, you are connected';
+        this.signInStr = 'hellow, ' + psotUserOutput.user.firstName;
       }
     )
     
@@ -52,7 +53,9 @@ export class MinyanNavComponent implements OnInit, SignInIfc, AfterViewInit {
 
 
 
-  constructor(private stringService: StringsService, private router: Router, private signInService: SignInService, private ngZone: NgZone) { }
+  constructor(private stringService: StringsService, private router: Router, private signInService: SignInService, private ngZone: NgZone) { 
+    signInService.subscribe(this);
+  }
 
 
 
