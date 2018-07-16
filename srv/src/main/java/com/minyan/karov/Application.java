@@ -14,9 +14,6 @@ import com.minyan.karov.entities.Synagogue;
 @RestController
 public class Application {
 	
-	@Autowired
-	HttpService httpService;
-	
 	
 	@Autowired
 	@Qualifier("datastoreCloud")

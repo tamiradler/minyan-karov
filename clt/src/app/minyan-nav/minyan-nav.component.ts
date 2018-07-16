@@ -40,7 +40,6 @@ export class MinyanNavComponent implements OnInit, SignInIfc, AfterViewInit {
         this.signInStr = 'hellow, ' + psotUserOutput.user.firstName;
       }
     )
-    
   }
 
 
