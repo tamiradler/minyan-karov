@@ -16,7 +16,6 @@ public class Application {
 	
 	
 	@Autowired
-	@Qualifier("datastoreCloud")
 	DatastoreDao datastoreDao;
 	
 	
