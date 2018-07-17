@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { PsotUserInput } from './psot-user-input';
 import { PsotUserOutput } from './post-user-output';
+import { User } from './user';
+import { UpdateUserInput } from './update-user-input';
+import { UpdateUserOutput } from './update-user-output';
 
 declare const gapi: any;
 
@@ -113,6 +116,25 @@ export class SignInService {
     this.signInIfcs.forEach(element=>{
       element.userDisconnected();
     })
+  }
+
+
+
+  public updateUser(user: User) {
+    var googleUser = this.auth2.currentUser.get();
+    
+    let updateUserInput: UpdateUserInput = new UpdateUserInput();
+    updateUserInput.user = user;
+    updateUserInput.tokenId = googleUser.getAuthResponse().id_token;
+    this.http.post(environment.hostUrl+'updateUser', updateUserInput).subscribe(
+      res=>{
+        this.signInIfcs.forEach(element=>{
+          let updateUserOutput: UpdateUserOutput = res as UpdateUserOutput;
+          element.userSignedIn(updateUserOutput);
+        })
+
+      }
+    )
   }
 }
 

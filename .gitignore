@@ -6,3 +6,4 @@ srv/.settings/
 srv/.project
 srv/.classpath
 srv/.springBeans
+srv/src/main/resources/application.properties

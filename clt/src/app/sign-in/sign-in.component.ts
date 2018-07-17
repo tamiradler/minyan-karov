@@ -64,16 +64,14 @@ export class SignInComponent implements OnInit, AfterViewInit, SignInIfc {
 
 
 
-
-
-
-
-
-
-
-
   disconnect() {
     this.signInService.disconnect();
+  }
+
+
+
+  update() {
+    this.signInService.updateUser(this.user);
   }
 
 

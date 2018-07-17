@@ -50,7 +50,8 @@ public class UserService
 	}
 	
 	
-	@PostMapping(value="/user/updateUser", consumes="application/json")
+	@CrossOrigin
+	@PostMapping(value="/updateUser", consumes="application/json")
 	public UpdateUserOutput updateUser(@RequestBody UpdateUserInput updateUserInput)
 	{
 		UpdateUserOutput updateUserOutput = new UpdateUserOutput();
@@ -62,6 +63,9 @@ public class UserService
 			userToUpdate.setLastName(user.getLastName());
 			userToUpdate.setPhone(user.getPhone());
 			datastoreDao.update(userToUpdate);
+			
+			user.setMail(userToUpdate.getMail());
+			updateUserOutput.setUser(user);
 		}
 		catch (Exception e) 
 		{
@@ -135,6 +139,16 @@ public class UserService
 	
 	class UpdateUserOutput extends ServiceOutput
 	{
+		private User user;
 		
+		public void setUser(User user)
+		{
+			this.user = user;
+		}
+		
+		public User getUser()
+		{
+			return this.user;
+		}
 	}
 }
