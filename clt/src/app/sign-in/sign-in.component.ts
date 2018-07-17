@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, NgZone } from '@angular/core';
 import { StringsService } from '../strings.service';
 import { SignInService } from '../sign-in.service';
 import { SignInIfc } from '../sign-in-ifc';
@@ -12,21 +12,32 @@ import { PsotUserOutput } from '../post-user-output';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit, AfterViewInit, SignInIfc {
-  
+  isSignedIn: boolean = false;
+
   
   userDisconnected(): void {
-    
+    this.ngZone.run(
+      () => {
+        this.isSignedIn = false;
+      })
   }
 
 
   userSignedIn(psotUserOutput: PsotUserOutput): void {
-    
+    this.ngZone.run(
+      () => {
+        this.isSignedIn = true;
+        this.signInService.googleInit(this);
+      })
   }
+
+
   getGoogleButton() {
     return document.getElementById("google-button");
   }
 
-  constructor(private stringService: StringsService, private signInService: SignInService) {
+
+  constructor(private stringService: StringsService, private signInService: SignInService,private ngZone: NgZone) {
     signInService.subscribe(this);
   }
 

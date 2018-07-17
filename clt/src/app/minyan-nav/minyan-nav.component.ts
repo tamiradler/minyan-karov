@@ -37,7 +37,8 @@ export class MinyanNavComponent implements OnInit, SignInIfc, AfterViewInit {
   userSignedIn(psotUserOutput: PsotUserOutput): void {
     this.ngZone.run(
       () => {
-        this.signInStr = 'hellow, ' + psotUserOutput.user.firstName;
+        this.signInStr = this.stringService.getString('hellow','he') 
+          + ', ' + psotUserOutput.user.firstName;
       }
     )
   }

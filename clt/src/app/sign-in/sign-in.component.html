@@ -1,2 +1,4 @@
-<div id="google-button" class="center">s</div>
-<div (click)="disconnect()">{{stringService.getString('disconnect','he')}}</div>
+<div [hidden]="this.isSignedIn" id="google-button" class="center"></div>
+<div *ngIf="this.isSignedIn">
+    <div (click)="disconnect()">{{stringService.getString('disconnect','he')}}</div>
+</div>
