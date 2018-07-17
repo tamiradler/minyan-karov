@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SignInIfc } from '../sign-in-ifc';
 import { SignInService } from '../sign-in.service';
 import { PsotUserOutput } from '../post-user-output';
+import { User } from '../user';
 
 @Component({
   selector: 'app-minyan-nav',
@@ -11,7 +12,6 @@ import { PsotUserOutput } from '../post-user-output';
   styleUrls: ['./minyan-nav.component.css']
 })
 export class MinyanNavComponent implements OnInit, SignInIfc, AfterViewInit {
-  
   
   userDisconnected(): void {
     this.ngZone.run(

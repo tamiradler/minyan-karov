@@ -1,4 +1,21 @@
-<div [hidden]="this.isSignedIn" id="google-button" class="center"></div>
-<div *ngIf="this.isSignedIn">
-    <div (click)="disconnect()">{{stringService.getString('disconnect','he')}}</div>
+<div [hidden]="isSignedIn" id="google-button" class="center"></div>
+<div dir="auto" class="container" *ngIf="isSignedIn && user != undefined">
+    <h1>{{title}}</h1>
+    <div class="form-group">
+        <label>{{stringService.getString('first_name','he')}}</label>
+        <input [(ngModel)]="user.firstName" class="form-control" placeholder="{{stringService.getString('first_name','he')}}">
+    </div>
+    <div class="form-group">
+        <label>{{stringService.getString('last_name','he')}}</label>
+        <input [(ngModel)]="user.lastName" class="form-control" placeholder="{{stringService.getString('last_name','he')}}">
+    </div>
+    <div class="form-group">
+        <label>{{stringService.getString('email','he')}}</label>
+        <input [(ngModel)]="user.phone" class="form-control" placeholder="{{stringService.getString('email','he')}}">
+    </div>
+    <div class="form-group">
+        <label>{{stringService.getString('phone','he')}}</label>
+        <input [(ngModel)]="user.mail" class="form-control" placeholder="{{stringService.getString('phone','he')}}">
+    </div>
+    <button (click)="disconnect()" type="button" class="btn btn-danger">{{stringService.getString('disconnect','he')}}</button>
 </div>

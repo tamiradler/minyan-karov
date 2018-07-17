@@ -3,6 +3,7 @@ import { StringsService } from '../strings.service';
 import { SignInService } from '../sign-in.service';
 import { SignInIfc } from '../sign-in-ifc';
 import { PsotUserOutput } from '../post-user-output';
+import { User } from '../user';
 
 
 
@@ -14,11 +15,15 @@ import { PsotUserOutput } from '../post-user-output';
 export class SignInComponent implements OnInit, AfterViewInit, SignInIfc {
   isSignedIn: boolean = false;
 
+  title: string;
+
+  user: User;
   
   userDisconnected(): void {
     this.ngZone.run(
       () => {
         this.isSignedIn = false;
+        this.user = undefined;
       })
   }
 
@@ -26,8 +31,9 @@ export class SignInComponent implements OnInit, AfterViewInit, SignInIfc {
   userSignedIn(psotUserOutput: PsotUserOutput): void {
     this.ngZone.run(
       () => {
+        this.title = this.stringService.getString('hellow','he') + ', ' + psotUserOutput.user.firstName;
         this.isSignedIn = true;
-        this.signInService.googleInit(this);
+        this.user = psotUserOutput.user;
       })
   }
 
