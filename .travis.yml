@@ -20,4 +20,4 @@ matrix:
         - npm install -g @angular/cli
         - npm install
       script:
-        - ng build
+        - ng build --prod
