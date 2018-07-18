@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.minyan.karov.services.PutError;
+import com.minyan.karov.services.ServiceOutput;
 
-public class AddSynagogueOutput implements PutError {
+public class AddSynagogueOutput extends ServiceOutput implements PutError {
 	private Map <String, List<String>> errors = new HashMap<>();
 
 	@Override

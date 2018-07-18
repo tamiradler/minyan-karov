@@ -2,6 +2,7 @@ package com.minyan.karov.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity(name = "Minyan")
 public class Minyan
@@ -10,6 +11,7 @@ public class Minyan
 	private String senagogId;
 	
 	@Column
+	@Id
 	private String minyanId;
 	
 	@Column

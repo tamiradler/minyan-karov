@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
         <label>{{stringService.getString('email','he')}}</label>
-        <input [(ngModel)]="user.mail" class="form-control" placeholder="{{stringService.getString('email','he')}}">
+        <input readonly [(ngModel)]="user.mail" class="form-control" placeholder="{{stringService.getString('email','he')}}">
     </div>
     <div class="form-group">
         <button (click)="update()" type="button" class="btn btn-warning">{{stringService.getString('edit','he')}}</button>
