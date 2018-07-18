@@ -16,7 +16,7 @@ export class AddMinyanComponent implements OnInit {
   language: string = 'he';
   errors: String[] = [];
 
-  constructor(private stringService: StringsService) { }
+  constructor(public stringService: StringsService) { }
 
   ngOnInit() {
   }

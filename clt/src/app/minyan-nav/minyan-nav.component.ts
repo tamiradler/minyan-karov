@@ -53,7 +53,7 @@ export class MinyanNavComponent implements OnInit, SignInIfc, AfterViewInit {
 
 
 
-  constructor(private stringService: StringsService, private router: Router, private signInService: SignInService, private ngZone: NgZone) { 
+  constructor(public stringService: StringsService, private router: Router, private signInService: SignInService, private ngZone: NgZone) { 
     signInService.subscribe(this);
   }
 

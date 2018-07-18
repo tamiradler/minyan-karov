@@ -21,7 +21,7 @@ export class AddSynagogueComponent implements OnInit {
   @ViewChildren(AddMinyanComponent) addMinyanComponents: AddMinyanComponent[];
 
 
-  constructor(private stringService: StringsService, private http: HttpClient) { }
+  constructor(public stringService: StringsService, private http: HttpClient) { }
 
   ngOnInit() {
     
