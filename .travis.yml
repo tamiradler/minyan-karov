@@ -21,7 +21,7 @@ matrix:
         - npm install
       script:
         - ng build --prod
-      before_install:
+      before_deploy:
         - cd dist
       deploy:
         provider: pages
