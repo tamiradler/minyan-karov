@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   baseUrl: '',
-  hostUrl: 'https://20180712t064633-dot-minyan-karov-210003.appspot.com/'  
-  //hostUrl: 'http://localhost:8080/'
+  //hostUrl: 'https://20180712t064633-dot-minyan-karov-210003.appspot.com/'  
+  hostUrl: 'http://localhost:8080/'
 };
