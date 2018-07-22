@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { GetAllSynagoguesOutput } from '../GetAllSynagoguesOutput';
 import { Synagogue } from '../Synagogue';
 import { } from '@types/googlemaps';
+import { StringsService } from '../strings.service';
 
 @Component({
   selector: 'app-senagog-map',
@@ -14,7 +15,7 @@ import { } from '@types/googlemaps';
 export class SenagogMapComponent implements AfterViewInit   {
   map: google.maps.Map;
 
-  constructor(private http: HttpClient) { } 
+  constructor(private http: HttpClient, public stringService: StringsService) { } 
 
 
   ngAfterViewInit() {
@@ -60,7 +61,7 @@ export class SenagogMapComponent implements AfterViewInit   {
     var telAviv = new google.maps.LatLng(parseFloat(latLan[0]), parseFloat(latLan[1]));
 
 
-    var contentString = this.retrieveInfowindowContent(synagogue);
+    var contentString: string = this.retrieveInfowindowContent(synagogue);
 
     var infowindow = new google.maps.InfoWindow({
       content: contentString
@@ -75,21 +76,16 @@ export class SenagogMapComponent implements AfterViewInit   {
 
 
   retrieveInfowindowContent(synagogue: Synagogue): string {
-    var contentString = '<div id="content">'+
+    var next_minyan: string = this.stringService.getString('next_minyan','he');
+    var more_information: string = this.stringService.getString('more_information','he');
+    
+    var contentString: string = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
             '<h4>' + synagogue.synagogueName + '</h4>'+
             '<div id="bodyContent">'+
-            '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-            'sandstone rock formation in the southern part of the '+
-            'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-            'south west of the nearest large town, Alice Springs; 450&#160;km '+
-            '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-            'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-            'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-            'Aboriginal people of the area. It has many springs, waterholes, '+
-            'rock caves and ancient paintings. Uluru is listed as a World '+
-            'Heritage Site.</p>'+
+            '<p>' + next_minyan + '</p>'+
+            '<p>' + synagogue.minyans[0].time + '</p>'+
             '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
             'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
             '(last visited June 22, 2009).</p>'+
