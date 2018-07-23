@@ -1,3 +1,5 @@
-<div class="container">
-  <h1>beit hakneset</h1>
+<div dir="rtl" class="container" *ngIf="synagogue != undefined">
+  <h4>{{stringService.getString('synagogue','he') + ' ' +synagogue.synagogueName}}</h4>
+  <p><b>{{stringService.getString('synagogueAddress','he')}}:</b></p>
+  <p>{{synagogue.address}}</p>
 </div>
