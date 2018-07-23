@@ -81,6 +81,7 @@ export class SenagogMapComponent implements AfterViewInit   {
     var minyanType: string = this.stringService.getString(synagogue.minyans[0].type,'he');
     var time: string = synagogue.minyans[0].time;
     var at: string = this.stringService.getString('at','he');
+    var synagogueUrl: string = '/synagoguePage/' + synagogue.synagogueId;
     var contentString: string = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
@@ -88,7 +89,7 @@ export class SenagogMapComponent implements AfterViewInit   {
             '<div id="bodyContent">'+
             '<p>' + next_minyan + '</p>'+
             '<p><b>' + minyanType + '</b> ' + at + time +'</p>'+
-            '<a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+            '<a href="' + synagogueUrl + '">'+
             more_information + '</a> '+
             '</div>'+
             '</div>';

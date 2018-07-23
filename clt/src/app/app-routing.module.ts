@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/SenagogMap', pathMatch: 'full' },
   { path: 'SenagogMap', component: SenagogMapComponent },
   { path: 'addSenagog', component: AddSynagogueComponent },
-  { path: 'synagoguePage', component: SynagoguePageComponent },
+  { path: 'synagoguePage/:synagogueId', component: SynagoguePageComponent },
   { path: 'signIn', component: SignInComponent }
 ];
 
