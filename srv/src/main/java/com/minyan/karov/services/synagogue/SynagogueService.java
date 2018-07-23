@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +18,6 @@ import com.minyan.karov.dao.DatastoreDao;
 import com.minyan.karov.dao.IdGenerator;
 import com.minyan.karov.entities.Minyan;
 import com.minyan.karov.entities.Synagogue;
-import com.minyan.karov.entities.User;
 import com.minyan.karov.entities.validators.SynagogueValidator;
 
 @RestController
