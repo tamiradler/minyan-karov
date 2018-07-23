@@ -1,5 +1,6 @@
 <div dir="rtl" class="container" *ngIf="synagogue != undefined">
   <h4>{{stringService.getString('synagogue','he') + ' ' +synagogue.synagogueName}}</h4>
-  <p><b>{{stringService.getString('synagogueAddress','he')}}:</b></p>
-  <p>{{synagogue.address}}</p>
+  <p><i class="material-icons">access_time</i> <b>{{stringService.getString('synagogueAddress','he')}}:</b></p>
+  <p class="container">{{synagogue.address}}</p>
+  
 </div>
