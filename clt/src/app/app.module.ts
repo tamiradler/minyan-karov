@@ -15,6 +15,7 @@ import { MinyanNavComponent } from './minyan-nav/minyan-nav.component';
 import { AddMinyanComponent } from './add-minyan/add-minyan.component';
 import { GetStringConfigComponent } from './get-string-config/get-string-config.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { SynagoguePageComponent } from './synagogue-page/synagogue-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MinyanNavComponent,
     AddMinyanComponent,
     GetStringConfigComponent,
-    SignInComponent
+    SignInComponent,
+    SynagoguePageComponent
   ],
   imports: [
     BrowserModule,
