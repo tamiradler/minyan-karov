@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,39 @@ public class SynagogueService {
 	
 	@Autowired
 	IdGenerator idGenerator;
+	
+	
+	@CrossOrigin
+	@GetMapping("/getSynagogue/{synagogueId}")
+  	public GetAllSynagoguesOutput getSynagogues(@PathVariable(value="synagogueId") String synagogueId)
+	{
+		GetAllSynagoguesOutput getAllSynagoguesOutput = new GetAllSynagoguesOutput();
+		try 
+		{
+			Entry<String, String> pair = new AbstractMap.SimpleEntry<String, String>("synagogueId", synagogueId);
+			List <Synagogue> synagogues = datastoreDao.getEntity(Synagogue.class, pair);
+			List <String> synagogueIds = getSynagogueIds(synagogues);
+			Map<String, List<Minyan>> synagogueIdToMinyan = getSynagogueIdToMinyan(synagogueIds);
+			for (Synagogue synagogue : synagogues) 
+			{
+				synagogue.setMinyans(synagogueIdToMinyan.get(synagogue.getSynagogueId()));
+			}
+			
+			getAllSynagoguesOutput.setSynagogues(synagogues);
+		}
+		catch (Exception e) 
+		{
+			String str = e.toString() + "<br/>";
+			for (StackTraceElement stackTraceElement : e.getStackTrace())
+			{
+				str = str + stackTraceElement.toString() + "<br/>";
+			}
+			return getAllSynagoguesOutput;
+		}
+		
+		return getAllSynagoguesOutput;
+	}
+	
 	
 	@CrossOrigin
 	@GetMapping("/getAllSynagogues")

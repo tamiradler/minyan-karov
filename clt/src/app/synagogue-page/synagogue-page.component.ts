@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-synagogue-page',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SynagoguePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute,
+    private http: HttpClient
+  ) { }
 
   ngOnInit() {
+    var synagogueId:string = this.activatedRoute.snapshot.paramMap.get('synagogueId');
   }
 
 }
