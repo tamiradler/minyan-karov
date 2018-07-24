@@ -4,17 +4,23 @@ import java.util.Calendar;
 
 public class Zmanim {
 
-    private static double day = 10.0;
-    private static double month = 5.0;
-    private static double year = 2016.0;
+    private double day = 10.0;
+    private double month = 5.0;
+    private double year = 2016.0;
 
-    private static double latitude = 32.077735;
-    private static double longitude = 34.785443;
+    private double latitude = 32.077735;
+    private double longitude = 34.785443;
+    
+    double gmtOffset = 0;
+    
+    public void setGmtOffset(double gmtOffset) {
+		this.gmtOffset = gmtOffset;
+	}
 
-    /**
+	/**
      * The method set the date.
      */
-    public static void setDate(double iYear, double iMonth, double iDay) {
+    public void setDate(double iYear, double iMonth, double iDay) {
         day = iDay;
         month = iMonth;
         year = iYear;
@@ -23,33 +29,33 @@ public class Zmanim {
     /**
      * The method set the latitude and the longitude.
      */
-    public static void setLatLng(String latLng) {
+    public void setLatLng(String latLng) {
         setLatLng(latLng.split(","));
     }
 
     /**
      * The method set the latitude and the longitude.
      */
-    public static void setLatLng(String [] latLng) {
+    public void setLatLng(String [] latLng) {
         setLatLng(latLng[0], latLng[1]);
     }
 
     /**
      * The method set the latitude and the longitude.
      */
-    public static void setLatLng(String iLatitude, String iLongitude) {
+    public void setLatLng(String iLatitude, String iLongitude) {
         setLatLng(Double.parseDouble(iLatitude), Double.parseDouble(iLongitude));
     }
 
     /**
      * The method set the latitude and the longitude.
      */
-    public static void setLatLng(double iLatitude, double iLongitude) {
+    public void setLatLng(double iLatitude, double iLongitude) {
         latitude = iLatitude;
         longitude = iLongitude;
     }
 
-    public static String getNoon() {
+    public String getNoon() {
         double day = computeDay();
         double sunrise = computeSunrise(day, true);
         double sunset = computeSunrise(day, false);
@@ -64,13 +70,13 @@ public class Zmanim {
      *
      * @return
      */
-    public static String getSunriseTime() {
+    public String getSunriseTime() {
         double day = computeDay();
         double sec = computeSunrise(day, true);
         return secoundsToTime(sec);
     }
 
-    public static String getSunsetTime() {
+    public String getSunsetTime() {
         double day = computeDay();
         double sec = computeSunrise(day, false);
         return secoundsToTime(sec);
@@ -82,7 +88,7 @@ public class Zmanim {
      * @param secounds
      * @return
      */
-    public static String secoundsToTime(double secounds) {
+    public String secoundsToTime(double secounds) {
         int h = (int) (secounds/(60*60));
         secounds -= h*(60*60);
         int m = (int) (secounds/60);
@@ -114,7 +120,7 @@ public class Zmanim {
      *
      * @return
      */
-    public static double computeDay() {
+    public double computeDay() {
         double N1 = Math.floor(275.0 * getMonth() / 9.0);
         double N2 = Math.floor((getMonth() + 9.0) / 12.0);
         double N3 = (1 + Math.floor((getYear() - 4.0 * Math.floor(getYear() / 4.0) + 2.0) / 3.0));
@@ -131,7 +137,7 @@ public class Zmanim {
      * @param sunrise
      * @return
      */
-    public static double computeSunrise(double day, boolean sunrise)
+    public double computeSunrise(double day, boolean sunrise)
     {
         double zenith = 90.83333333333333;
         double D2R = Math.PI / 180.0;
@@ -204,7 +210,7 @@ public class Zmanim {
         }
 
         //convert UT value to local time zone of latitude/longitude
-        double localT = UT + 3.0;
+        double localT = UT + gmtOffset;
 
         //convert to Milliseconds
         return localT * 3600.0;// * 1000;
@@ -216,7 +222,7 @@ public class Zmanim {
      *
      * @return
      */
-    public static String getTodayDateAsString() {
+    public String getTodayDateAsString() {
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;
@@ -229,15 +235,15 @@ public class Zmanim {
         return Integer.toString(dayOfMonth) + "/" + Integer.toString(monthOfYear) + "/" + Integer.toString(year);
     }
 
-    public static double getDay() {
+    public double getDay() {
         return day;
     }
 
-    public static double getMonth() {
+    public double getMonth() {
         return month;
     }
 
-    public static double getYear() {
+    public double getYear() {
         return year;
     }
 }
