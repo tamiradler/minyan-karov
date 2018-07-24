@@ -10,6 +10,26 @@ public class ZmanimOutput
 	
 	private String shaaZmanit;
 	
+	private String tzetHkohavim;
+	
+	private String alotHashahar;
+	
+	public String getAlotHashahar() {
+		return alotHashahar;
+	}
+
+	public void setAlotHashahar(String alotHashahar) {
+		this.alotHashahar = alotHashahar;
+	}
+
+	public String getTzetHkohavim() {
+		return tzetHkohavim;
+	}
+
+	public void setTzetHkohavim(String tzetHkohavim) {
+		this.tzetHkohavim = tzetHkohavim;
+	}
+
 	public String getShaaZmanit() {
 		return shaaZmanit;
 	}

@@ -65,6 +65,10 @@ public class Zmanim {
     }
 
     
+    /**
+     * 
+     * @return
+     */
     public double getShaaZmanit() {
     	double day = computeDay();
         double sunrise = computeSunrise(day, true);
@@ -72,7 +76,40 @@ public class Zmanim {
         return (sunset-sunrise)/12.0;
     }
     
+    
+    public String getAlotHashahar()
+    {
+    	double day = computeDay();
+        double sunrise = computeSunrise(day, true);
+        return secoundsToTime(sunrise - 60.0*72.0);
+    }
+    
 
+    /**
+     * 
+     * @return
+     */
+    public String getTzetHkohavim()
+    {
+    	double day = computeDay();
+        double sunset = computeSunrise(day, false);
+        double shaaZmanit = getShaaZmanit();
+        double dakaZmanit = shaaZmanit/60;
+        
+        double tzetHkohavim = sunset;
+        
+        if (dakaZmanit < 60.0)
+        {
+        	tzetHkohavim += 60.0*18.0; 
+        }
+        else
+        {
+        	tzetHkohavim += dakaZmanit*18.0; 
+        }
+        return secoundsToTime(tzetHkohavim);
+    }
+    
+    
     /**
      * The method return the sunrise time in HH:MM:SS format.
      *

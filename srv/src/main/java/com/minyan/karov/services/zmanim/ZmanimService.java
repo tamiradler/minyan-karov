@@ -31,7 +31,8 @@ public class ZmanimService
 		zmanimOutput.setSunrise(zmanim.getSunriseTime());
 		zmanimOutput.setSunset(zmanim.getSunsetTime());
 		zmanimOutput.setShaaZmanit(String.valueOf(zmanim.getShaaZmanit()));
-		
+		zmanimOutput.setTzetHkohavim(zmanim.getTzetHkohavim());
+		zmanimOutput.setAlotHashahar(zmanim.getAlotHashahar());
 		return getZmanimOutput;
 	}
 }
