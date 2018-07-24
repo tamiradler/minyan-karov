@@ -30,6 +30,7 @@ public class ZmanimService
 		zmanimOutput.setNoon(zmanim.getNoon());
 		zmanimOutput.setSunrise(zmanim.getSunriseTime());
 		zmanimOutput.setSunset(zmanim.getSunsetTime());
+		zmanimOutput.setShaaZmanit(String.valueOf(zmanim.getShaaZmanit()));
 		
 		return getZmanimOutput;
 	}

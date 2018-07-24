@@ -8,6 +8,16 @@ public class ZmanimOutput
 	
 	private String sunset;
 	
+	private String shaaZmanit;
+	
+	public String getShaaZmanit() {
+		return shaaZmanit;
+	}
+
+	public void setShaaZmanit(String shaaZmanit) {
+		this.shaaZmanit = shaaZmanit;
+	}
+
 	public String getNoon() {
 		return noon;
 	}

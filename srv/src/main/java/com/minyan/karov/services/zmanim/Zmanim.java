@@ -64,6 +64,14 @@ public class Zmanim {
         return secoundsToTime(noon);
     }
 
+    
+    public double getShaaZmanit() {
+    	double day = computeDay();
+        double sunrise = computeSunrise(day, true);
+        double sunset = computeSunrise(day, false);
+        return (sunset-sunrise)/12.0;
+    }
+    
 
     /**
      * The method return the sunrise time in HH:MM:SS format.

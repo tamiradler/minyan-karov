@@ -19,7 +19,7 @@ export class SenagogMapComponent implements AfterViewInit   {
 
 
   ngAfterViewInit() {
-    //Tel Aviv - 32.086718, 34.789760
+    //Tel Aviv - 32.086718,34.789760
     var telAviv = new google.maps.LatLng(32.086718, 34.789760);
 
     var mapProp = { 
