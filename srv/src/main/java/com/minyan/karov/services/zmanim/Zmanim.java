@@ -1,0 +1,244 @@
+package com.minyan.karov.services.zmanim;
+
+import java.util.Calendar;
+
+public class Zmanim {
+
+    private static double day = 10.0;
+    private static double month = 5.0;
+    private static double year = 2016.0;
+
+    private static double latitude = 32.077735;
+    private static double longitude = 34.785443;
+
+    /**
+     * The method set the date.
+     */
+    public static void setDate(double iYear, double iMonth, double iDay) {
+        day = iDay;
+        month = iMonth;
+        year = iYear;
+    }
+
+    /**
+     * The method set the latitude and the longitude.
+     */
+    public static void setLatLng(String latLng) {
+        setLatLng(latLng.split(","));
+    }
+
+    /**
+     * The method set the latitude and the longitude.
+     */
+    public static void setLatLng(String [] latLng) {
+        setLatLng(latLng[0], latLng[1]);
+    }
+
+    /**
+     * The method set the latitude and the longitude.
+     */
+    public static void setLatLng(String iLatitude, String iLongitude) {
+        setLatLng(Double.parseDouble(iLatitude), Double.parseDouble(iLongitude));
+    }
+
+    /**
+     * The method set the latitude and the longitude.
+     */
+    public static void setLatLng(double iLatitude, double iLongitude) {
+        latitude = iLatitude;
+        longitude = iLongitude;
+    }
+
+    public static String getNoon() {
+        double day = computeDay();
+        double sunrise = computeSunrise(day, true);
+        double sunset = computeSunrise(day, false);
+
+        double noon = (sunset + sunrise)/2;
+        return secoundsToTime(noon);
+    }
+
+
+    /**
+     * The method return the sunrise time in HH:MM:SS format.
+     *
+     * @return
+     */
+    public static String getSunriseTime() {
+        double day = computeDay();
+        double sec = computeSunrise(day, true);
+        return secoundsToTime(sec);
+    }
+
+    public static String getSunsetTime() {
+        double day = computeDay();
+        double sec = computeSunrise(day, false);
+        return secoundsToTime(sec);
+    }
+
+    /**
+     * The method get time in secound from 00:00 and return the time in format HH:MM:SS.
+     *
+     * @param secounds
+     * @return
+     */
+    public static String secoundsToTime(double secounds) {
+        int h = (int) (secounds/(60*60));
+        secounds -= h*(60*60);
+        int m = (int) (secounds/60);
+        secounds -= m*60;
+
+        String min = "";
+        if (m < 10) {
+            min = "0" + Integer.toString(m);
+        }
+        else {
+            min = Integer.toString(m);
+        }
+
+        String sec = "";
+        if (secounds < 10) {
+            sec = "0" + Integer.toString((int)secounds);
+        }
+        else {
+            sec = Integer.toString((int)secounds);
+        }
+
+        String time = Integer.toString(h) + ":" + min + ":" + sec;
+        return time;
+    }
+
+
+    /**
+     * The method return the number of the day in the year.
+     *
+     * @return
+     */
+    public static double computeDay() {
+        double N1 = Math.floor(275.0 * getMonth() / 9.0);
+        double N2 = Math.floor((getMonth() + 9.0) / 12.0);
+        double N3 = (1 + Math.floor((getYear() - 4.0 * Math.floor(getYear() / 4.0) + 2.0) / 3.0));
+        double N = N1 - (N2 * N3) + getDay() - 30.0;
+
+        return N;
+    }
+
+    /**
+     * The method will return the time of sunrise if sunrise = true, else will return sunset.
+     * The return vslue is in secound after 00:00.
+     *
+     * @param day
+     * @param sunrise
+     * @return
+     */
+    public static double computeSunrise(double day, boolean sunrise)
+    {
+        double zenith = 90.83333333333333;
+        double D2R = Math.PI / 180.0;
+        double R2D = 180.0 / Math.PI;
+
+        // convert the longitude to hour value and calculate an approximate time
+        double lnHour = longitude / 15.0;
+        double t;
+        if (sunrise) {
+            t = day + ((6.0 - lnHour) / 24.0);
+        } else {
+            t = day + ((18.0 - lnHour) / 24.0);
+        }
+
+        //calculate the Sun's mean anomaly
+        double M = (0.9856 * t) - 3.289;
+
+
+        //calculate the Sun's true longitude
+        double L = M + (1.916 * Math.sin(M * D2R)) + (0.020 * Math.sin(2.0 * M * D2R)) + 282.634;
+        if (L > 360.0) {
+            L = L - 360.0;
+        } else if (L < 0.0) {
+            L = L + 360.0;
+        }
+
+
+        //calculate the Sun's right ascension
+        double RA = R2D * Math.atan(0.91764 * Math.tan(L * D2R));
+        if (RA > 360.0) {
+            RA = RA - 360.0;
+        } else if (RA < 0.0) {
+            RA = RA + 360.0;
+        }
+
+
+        //right ascension value needs to be in the same qua
+        double Lquadrant = (Math.floor(L / (90.0))) * 90.0;
+        double RAquadrant = (Math.floor(RA / 90.0)) * 90.0;
+        RA = RA + (Lquadrant - RAquadrant);
+
+
+        //right ascension value needs to be converted into hours
+        RA = RA / 15.0;
+
+        //calculate the Sun's declination
+        double sinDec = 0.39782 * Math.sin(L * D2R);
+        double cosDec = Math.cos(Math.asin(sinDec));
+
+        //calculate the Sun's local hour angle
+        double cosH = (Math.cos(zenith * D2R) - (sinDec * Math.sin(latitude * D2R))) / (cosDec * Math.cos(latitude * D2R));
+        double H;
+        if (sunrise) {
+            H = 360.0 - R2D * Math.acos(cosH);
+        } else {
+            H = R2D * Math.acos(cosH);
+        }
+        H = H / 15.0;
+
+
+        //calculate local mean time of rising/setting
+        double T = H + RA - (0.06571 * t) - 6.622;
+
+        //adjust back to UTC
+        double UT = T - lnHour;
+        if (UT > 24.0) {
+            UT = UT - 24.0;
+        } else if (UT < 0.0) {
+            UT = UT + 24.0;
+        }
+
+        //convert UT value to local time zone of latitude/longitude
+        double localT = UT + 3.0;
+
+        //convert to Milliseconds
+        return localT * 3600.0;// * 1000;
+    }
+
+
+    /**
+     * The method will return the current date as DD/MM/YYYY format.
+     *
+     * @return
+     */
+    public static String getTodayDateAsString() {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH) + 1;
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        return getDateAsString(year, month, day);
+    }
+
+    public static String getDateAsString(int year, int monthOfYear, int dayOfMonth) {
+        return Integer.toString(dayOfMonth) + "/" + Integer.toString(monthOfYear) + "/" + Integer.toString(year);
+    }
+
+    public static double getDay() {
+        return day;
+    }
+
+    public static double getMonth() {
+        return month;
+    }
+
+    public static double getYear() {
+        return year;
+    }
+}
+

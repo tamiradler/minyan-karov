@@ -1,7 +1,7 @@
 <div dir="rtl" class="container" *ngIf="synagogue != undefined">
   <h4>{{stringService.getString('synagogue','he') + ' ' +synagogue.synagogueName}}</h4>
-  <p><i style="color: blue" class="material-icons">map</i> <b>{{stringService.getString('synagogueAddress','he')}}:</b></p>
-  <p class="container">{{synagogue.address}}</p>
+  <p><i style="color: blue" class="material-icons">map</i> <b>{{stringService.getString('synagogueAddress','he')}}: </b>{{synagogue.address}}</p>
+  <p class="container"><b>{{stringService.getString('nosach','he')}}: </b>{{stringService.getString(synagogue.nosach,'he')}}</p>
   <p><i style="color: blue" class="material-icons">access_time</i> <b>{{stringService.getString('minyans','he')}}:</b></p>
   <div class="container" *ngFor="let minyan of synagogue.minyans">
     <b class="container">{{stringService.getString(minyan.type,'he')}}</b>
