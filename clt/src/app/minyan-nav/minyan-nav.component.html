@@ -6,14 +6,17 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-          <li class="nav-item active" [class.active]="isItemActive('/SenagogMap')">
-              <a class="nav-link" href="/SenagogMap">{{stringService.getString('synagogueMap','he')}}</a>
-          </li>
-          <li class="nav-item" [class.active]="isItemActive('/addSenagog')">
-              <a class="nav-link" href="/addSenagog">{{stringService.getString('addSynagogue','he')}}</a>
-          </li>
-          <li class="nav-item" [class.active]="isItemActive('/signIn')">
-            <a class="nav-link" href="/signIn">{{signInStr}}</a>
+        <li class="nav-item active" [class.active]="isItemActive('/SenagogMap')">
+          <a class="nav-link" href="/SenagogMap">{{stringService.getString('synagogueMap','he')}}</a>
+        </li>
+        <li class="nav-item" [class.active]="isItemActive('/addSenagog')">
+          <a class="nav-link" href="/addSenagog">{{stringService.getString('addSynagogue','he')}}</a>
+        </li>
+        <li class="nav-item" [class.active]="isItemActive('/zmanim')">
+          <a class="nav-link" href="/zmanim">{{stringService.getString('zmanim','he')}}</a>
+        </li>
+        <li class="nav-item" [class.active]="isItemActive('/signIn')">
+          <a class="nav-link" href="/signIn">{{signInStr}}</a>
         </li>
       </ul>
   </div>
