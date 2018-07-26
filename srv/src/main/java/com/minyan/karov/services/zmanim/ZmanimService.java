@@ -45,6 +45,6 @@ public class ZmanimService
 	@GetMapping("/getV")
 	String getZmanim()
 	{
-		return System.getenv("JAVA_HOME");
+		return System.getenv("TIME_ZONE_DB_KEY");
 	}
 }
