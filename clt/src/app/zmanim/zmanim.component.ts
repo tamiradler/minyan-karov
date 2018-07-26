@@ -13,22 +13,46 @@ import { ZmanimOutput } from '../zmanim-output';
 export class ZmanimComponent implements OnInit {
 
   zmanimOutput: ZmanimOutput;
+  self: ZmanimComponent = this;
 
   constructor(
     private http: HttpClient,
     public stringsService: StringsService) { }
 
   ngOnInit() {
-    this.getZmanim();
+    navigator.geolocation.getCurrentPosition(position => this.setCurrentLocation(position, this), error=>this.handleError(error,this));
   }
 
 
+///getZmanim/latLng/{latLng}/year/{year}/day/{day}/month/{month}
+  getZmanim(latLng: string) {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
 
-  getZmanim() {
-    this.http.get<GetZmanimOutput>(environment.hostUrl+'/getZmanim/latLng/{latLng}/year/{year}/day/{day}/month/{month}/gmtOffset/{gmtOffset}')
+    var getZmanimUrl: string = '/getZmanim'
+                                + '/latLng/' + latLng
+                                + '/year/' + yyyy
+                                + '/day/' + dd
+                                + '/month/' + mm;
+
+    this.http.get<GetZmanimOutput>(environment.hostUrl+getZmanimUrl)
       .subscribe(res => {
         this.zmanimOutput = res.zmanimOutput;
       });
   }
+
+
+  setCurrentLocation(position, self: ZmanimComponent) {
+    console.log(position);
+    self.getZmanim(position.coords.latitude + "," + position.coords.longitude);
+  }
+
+
+  handleError(error, self: ZmanimComponent) {
+    self.getZmanim('32.086718,34.789760');
+  }
+
 
 }

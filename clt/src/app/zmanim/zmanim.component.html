@@ -1,5 +1,6 @@
   
-<div class="container">
+<div *ngIf="zmanimOutput != undefined" class="container">
+  <input type="date">
   <table class="table">
     <thead>
       <tr>
@@ -9,7 +10,7 @@
     </thead>
     <tbody>
       <tr>
-        <th>1</th>
+        <th>{{zmanimOutput.alotHashahar}}</th>
         <td>Mark</td>
       </tr>
       <tr>
