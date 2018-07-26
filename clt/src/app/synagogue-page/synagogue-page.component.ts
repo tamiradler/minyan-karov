@@ -28,7 +28,7 @@ export class SynagoguePageComponent implements OnInit {
   }
 
   getSynagogue() {
-    return this.http.get<GetAllSynagoguesOutput>(environment.hostUrl+'getSynagogue/'+this.synagogueId).subscribe(res => 
+    this.http.get<GetAllSynagoguesOutput>(environment.hostUrl+'getSynagogue/'+this.synagogueId).subscribe(res => 
       {
         res.synagogues.forEach(synagogue => {
           this.synagogue = synagogue;
