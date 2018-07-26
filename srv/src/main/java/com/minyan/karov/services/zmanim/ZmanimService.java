@@ -19,7 +19,7 @@ public class ZmanimService
 			)
 	{
 		RestTemplate restTemplate = new RestTemplate();
-		TimeZoneDb timeZoneDb = restTemplate.getForObject("http://api.timezonedb.com/v2/get-time-zone?key=OAURQ36AWJEN&format=json&by=position&lat=32.086718&lng=34.789760", TimeZoneDb.class);
+		TimeZoneDb timeZoneDb = restTemplate.getForObject("http://api.timezonedb.com/v2/get-time-zone?key="+System.getenv("TIME_ZONE_DB_KEY")+"&format=json&by=position&lat=32.086718&lng=34.789760", TimeZoneDb.class);
 		
 		
 		Zmanim zmanim = new Zmanim();
