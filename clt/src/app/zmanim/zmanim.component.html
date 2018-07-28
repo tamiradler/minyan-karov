@@ -1,32 +1,42 @@
   
 <div *ngIf="zmanimOutput != undefined" class="container">
-  <input [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="date = $event" type="date" class="form-control">
-  <table class="table">
-    <tbody>
-      <tr>
-        <th>{{zmanimOutput.alotHashahar}}</th>
-        <td>{{stringsService.getString('alot_hashahar','he')}}</td>
-      </tr>
-      <tr>
-        <th>{{zmanimOutput.sunrise}}</th>
-        <td>{{stringsService.getString('netz','he')}}</td>
-      </tr>
-      <tr>
-        <th>{{zmanimOutput.noon}}</th>
-        <td>{{stringsService.getString('noon','he')}}</td>
-      </tr>
-      <tr>
-        <th>{{zmanimOutput.sunset}}</th>
-        <td>{{stringsService.getString('sunset','he')}}</td>
-      </tr>
-      <tr>
-        <th>{{zmanimOutput.tzetHkohavim}}</th>
-        <td>{{stringsService.getString('starout','he')}}</td>
-      </tr>
-      <tr>
-        <th>{{zmanimOutput.shaaZmanit}}</th>
-        <td>{{stringsService.getString('alot_hashahar','he')}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <input [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="date = $event" type="date" class="form-control" (ngModelChange)="dateChange()">
+  <div class="row">
+    <div class="col-sm-6">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>{{zmanimOutput.alotHashahar}}</th>
+            <td>{{stringsService.getString('alot_hashahar','he')}}</td>
+          </tr>
+          <tr>
+            <th>{{zmanimOutput.sunrise}}</th>
+            <td>{{stringsService.getString('netz','he')}}</td>
+          </tr>
+          <tr>
+            <th>{{zmanimOutput.noon}}</th>
+            <td>{{stringsService.getString('noon','he')}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-6">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>{{zmanimOutput.sunset}}</th>
+            <td>{{stringsService.getString('sunset','he')}}</td>
+          </tr>
+          <tr>
+            <th>{{zmanimOutput.tzetHkohavim}}</th>
+            <td>{{stringsService.getString('starout','he')}}</td>
+          </tr>
+          <tr>
+            <th>{{zmanimOutput.shaaZmanit}}</th>
+            <td>{{stringsService.getString('shaa_zmanit','he')}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

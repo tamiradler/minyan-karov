@@ -35,7 +35,15 @@ public class ZmanimOutput
 	}
 
 	public void setShaaZmanit(String shaaZmanit) {
-		this.shaaZmanit = shaaZmanit;
+		if (shaaZmanit == null) {
+			return;
+		}
+		
+		if (shaaZmanit.length() > 5){
+			this.shaaZmanit = shaaZmanit.substring(0, 5);
+		} else {
+			this.shaaZmanit = shaaZmanit;
+		}
 	}
 
 	public String getNoon() {

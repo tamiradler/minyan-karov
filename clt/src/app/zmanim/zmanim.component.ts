@@ -26,7 +26,7 @@ export class ZmanimComponent implements OnInit {
 
 ///getZmanim/latLng/{latLng}/year/{year}/day/{day}/month/{month}
   getZmanim(latLng: string) {
-    var today = new Date();
+    var today = this.date;
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
@@ -54,5 +54,12 @@ export class ZmanimComponent implements OnInit {
     self.getZmanim('32.086718,34.789760');
   }
 
+
+  dateChange() {
+    this.zmanimOutput = undefined;
+    this.date = new Date(this.date);
+    console.log(this.date);
+    this.ngOnInit();
+  }
 
 }
