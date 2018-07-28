@@ -1,5 +1,12 @@
   
-<div *ngIf="zmanimOutput != undefined" class="container">
+<div dir="rtl" *ngIf="zmanimOutput != undefined" class="container">
+  
+  <div class="form-group">
+    <select class="form-control"> <!--[(ngModel)]="synagogue.nosach"-->
+      <option *ngFor="let location of stringsService.getStringObjArray('zmanim_locations')">{{location['he']}}</option> <!--[ngValue]="nosach.code"-->
+    </select>
+  </div>
+  
   <input [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="date = $event" type="date" class="form-control" (ngModelChange)="dateChange()">
   <div class="row">
     <div class="col-sm-6">
