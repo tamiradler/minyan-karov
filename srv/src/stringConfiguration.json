@@ -128,6 +128,28 @@
   "minutes": {
     "he": "דקות"
   },
+  "zmanim_locations": [
+    {
+      "he": "מיקום נוכחי",
+      "code": "current_location",
+      "lat_lng": "NON"
+    },
+    {
+      "he": "תל אביב",
+      "code": "tel_aviv",
+      "lat_lng": "32.086718,34.789760"
+    },
+    {
+      "he": "רחובות",
+      "code": "rehovot",
+      "lat_lng": "32.086718,34.789760"
+    },
+    {
+      "he": "באר שבע",
+      "code": "beer_sheva",
+      "lat_lng": "32.086718,34.789760"
+    }
+  ],
   "nosachArray": [
     {
       "he": "נוסח אחיד",
