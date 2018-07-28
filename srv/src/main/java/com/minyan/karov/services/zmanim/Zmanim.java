@@ -77,6 +77,18 @@ public class Zmanim {
     }
     
     
+    /**
+     * 
+     * @return
+     */
+    public String getShaaZmanitTime() {
+    	double day = computeDay();
+        double sunrise = computeSunrise(day, true);
+        double sunset = computeSunrise(day, false);
+        return String.valueOf((sunset-sunrise)/12.0/60/60);
+    }
+    
+    
     public String getAlotHashahar()
     {
     	double day = computeDay();

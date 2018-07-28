@@ -11,7 +11,7 @@ import { ZmanimOutput } from '../zmanim-output';
   styleUrls: ['./zmanim.component.css']
 })
 export class ZmanimComponent implements OnInit {
-
+  date: Date = new Date();
   zmanimOutput: ZmanimOutput;
   self: ZmanimComponent = this;
 

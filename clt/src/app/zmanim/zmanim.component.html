@@ -1,25 +1,31 @@
   
 <div *ngIf="zmanimOutput != undefined" class="container">
-  <input type="date">
+  <input [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="date = $event" type="date" class="form-control">
   <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
     <tbody>
       <tr>
         <th>{{zmanimOutput.alotHashahar}}</th>
-        <td>Mark</td>
+        <td>{{stringsService.getString('alot_hashahar','he')}}</td>
       </tr>
       <tr>
-        <th>2</th>
-        <td>Jacob</td>
+        <th>{{zmanimOutput.sunrise}}</th>
+        <td>{{stringsService.getString('alot_hashahar','he')}}</td>
       </tr>
       <tr>
-        <th>3</th>
-        <td>Larry</td>
+        <th>{{zmanimOutput.noon}}</th>
+        <td>{{stringsService.getString('alot_hashahar','he')}}</td>
+      </tr>
+      <tr>
+        <th>{{zmanimOutput.sunset}}</th>
+        <td>{{stringsService.getString('alot_hashahar','he')}}</td>
+      </tr>
+      <tr>
+        <th>{{zmanimOutput.tzetHkohavim}}</th>
+        <td>{{stringsService.getString('alot_hashahar','he')}}</td>
+      </tr>
+      <tr>
+        <th>{{zmanimOutput.shaaZmanit}}</th>
+        <td>{{stringsService.getString('alot_hashahar','he')}}</td>
       </tr>
     </tbody>
   </table>
