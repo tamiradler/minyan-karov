@@ -9,41 +9,18 @@
   
   <input [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="date = $event" type="date" class="form-control" (ngModelChange)="dateChange()">
   <div class="row">
-    <div class="col-sm-6">
-      <table class="table">
-        <tbody>
-          <tr>
-            <th>{{zmanimOutput.alotHashahar}}</th>
-            <td>{{stringsService.getString('alot_hashahar','he')}}</td>
-          </tr>
-          <tr>
-            <th>{{zmanimOutput.sunrise}}</th>
-            <td>{{stringsService.getString('netz','he')}}</td>
-          </tr>
-          <tr>
-            <th>{{zmanimOutput.noon}}</th>
-            <td>{{stringsService.getString('noon','he')}}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-sm-6 container">
+      <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('alot_hashahar','he')}}</span><span class="value ng-binding">{{zmanimOutput.alotHashahar}}</span></div>
+      <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('netz','he')}}</span><span class="value ng-binding">{{zmanimOutput.sunrise}}</span></div>
+      <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('noon','he')}}</span><span class="value ng-binding">{{zmanimOutput.noon}}</span></div>    
     </div>
-    <div class="col-sm-6">
-      <table class="table">
-        <tbody>
-          <tr>
-            <th>{{zmanimOutput.sunset}}</th>
-            <td>{{stringsService.getString('sunset','he')}}</td>
-          </tr>
-          <tr>
-            <th>{{zmanimOutput.tzetHkohavim}}</th>
-            <td>{{stringsService.getString('starout','he')}}</td>
-          </tr>
-          <tr>
-            <th>{{zmanimOutput.shaaZmanit}}</th>
-            <td>{{stringsService.getString('shaa_zmanit','he')}}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-sm-6 container">
+      <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('sunset','he')}}</span>
+        <span class="value ng-binding">{{zmanimOutput.sunset}}</span></div>
+      <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('starout','he')}}</span>
+        <span class="value ng-binding">{{zmanimOutput.tzetHkohavim}}</span></div>
+      <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('shaa_zmanit','he')}}</span>
+        <span class="value ng-binding">{{zmanimOutput.shaaZmanit}}</span></div>    
     </div>
   </div>
 </div>

@@ -12,3 +12,45 @@ body, html {
   height: 100%;
   width: 100%;
 }
+
+
+
+.times-element{
+  padding:0 9px 9px;
+}
+.times-element .name{
+  float:right;
+}
+.times-element .value{
+  float:left;
+}
+.eng .times-element .name{
+  float:left;
+  max-width:105px;
+}
+.eng .times-element .value{
+  float:right;
+}
+.clfAfter:after{
+  clear:both;
+  height:0;
+  font-size:1pt;
+  display:block;
+  content:' ';
+}
+.times-element .name{
+  float:right;
+}
+.content-box .head .name{
+  font-size:20px;
+  position:relative;
+  top:5px;
+}
+.eng .times-element .name{
+  float:left;
+  max-width:105px;
+}
+
+.times-element .value{
+  float:left;
+}
