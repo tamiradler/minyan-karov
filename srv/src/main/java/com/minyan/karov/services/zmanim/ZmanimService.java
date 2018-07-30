@@ -1,5 +1,9 @@
 package com.minyan.karov.services.zmanim;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +22,9 @@ public class ZmanimService
 			@PathVariable(value="month") double month
 			)
 	{
+		ZoneId zoneId = ZoneId.systemDefault();
+		long unixTime = LocalDate.of( (int) year , Month.of((int) month) , (int) day ).atStartOfDay(zoneId).toEpochSecond();
+		
 		String [] latLngArr = latLng.split(",");
 		RestTemplate restTemplate = new RestTemplate();
 		TimeZoneDb timeZoneDb = restTemplate.getForObject("http://api.timezonedb.com/v2/get-time-zone?"
@@ -25,7 +32,9 @@ public class ZmanimService
 					+ "&format=json"
 					+ "&by=position"
 					+ "&lat=" + latLngArr[0]
-					+ "&lng=" + latLngArr[1], TimeZoneDb.class);
+					+ "&lng=" + latLngArr[1]
+					+ "&time=" + unixTime, TimeZoneDb.class);
+		
 		
 		
 		Zmanim zmanim = new Zmanim();
