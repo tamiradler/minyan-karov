@@ -2,12 +2,12 @@
 <div dir="rtl" *ngIf="zmanimOutput != undefined" class="container">
   
   <div class="form-group">
-    <select class="form-control"> <!--[(ngModel)]="synagogue.nosach"-->
+    <select class="form-control" style="max-width: 150px;margin: auto;"> <!--[(ngModel)]="synagogue.nosach"-->
       <option *ngFor="let location of stringsService.getStringObjArray('zmanim_locations')">{{location['he']}}</option> <!--[ngValue]="nosach.code"-->
     </select>
   </div>
   
-  <input [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="date = $event" type="date" class="form-control" (ngModelChange)="dateChange()">
+  <input dir="rtl" style="max-width: 150px;margin: auto;" [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="date = $event" type="date" class="form-control" (ngModelChange)="dateChange()">
   <div class="row">
     <div class="col-sm-6 container">
       <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('alot_hashahar','he')}}</span><span class="value ng-binding">{{zmanimOutput.alotHashahar}}</span></div>
