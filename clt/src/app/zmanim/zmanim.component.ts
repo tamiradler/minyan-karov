@@ -23,8 +23,15 @@ export class ZmanimComponent implements OnInit {
     navigator.geolocation.getCurrentPosition(position => this.setCurrentLocation(position, this), error=>this.handleError(error,this));
   }
 
+  locationChange(latLng) {
+    this.zmanimOutput = undefined;
+    if (latLng === 'NON') {
+      this.ngOnInit();
+    } else {
+      this.getZmanim(latLng);
+    }
+  }
 
-  
   getZmanim(latLng: string) {
     var today = this.date;
     var dd = today.getDate();

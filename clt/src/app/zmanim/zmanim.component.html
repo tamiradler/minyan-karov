@@ -1,14 +1,15 @@
   
-<div dir="rtl" *ngIf="zmanimOutput != undefined" class="container">
+<div dir="rtl" class="container">
   
   <div class="form-group">
-    <select class="form-control" style="max-width: 150px;margin: auto;"> <!--[(ngModel)]="synagogue.nosach"-->
-      <option *ngFor="let location of stringsService.getStringObjArray('zmanim_locations')">{{location['he']}}</option> <!--[ngValue]="nosach.code"-->
+    <select class="form-control" style="max-width: 150px;margin: auto;" (change)="locationChange($event.target.value)">
+      <option *ngFor="let location of stringsService.getStringObjArray('zmanim_locations')" [value]="location.lat_lng">{{location['he']}}</option>
     </select>
   </div>
   
   <input dir="rtl" style="max-width: 150px;margin: auto;" [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="date = $event" type="date" class="form-control" (ngModelChange)="dateChange()">
-  <div class="row">
+  
+  <div class="row" *ngIf="zmanimOutput != undefined">
     <div class="col-sm-6 container">
       <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('alot_hashahar','he')}}</span><span class="value ng-binding">{{zmanimOutput.alotHashahar}}</span></div>
       <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('netz','he')}}</span><span class="value ng-binding">{{zmanimOutput.sunrise}}</span></div>
