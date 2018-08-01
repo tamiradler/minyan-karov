@@ -2,7 +2,7 @@
 <div dir="rtl" class="container">
   
   <div class="form-group">
-    <select class="form-control" style="max-width: 150px;margin: auto;" (change)="locationChange($event.target.value)">
+    <select [(ngModel)]="latLng" class="form-control" style="max-width: 150px;margin: auto;" (change)="locationChange($event.target.value)">
       <option *ngFor="let location of stringsService.getStringObjArray('zmanim_locations')" [value]="location.lat_lng">{{location['he']}}</option>
     </select>
   </div>
