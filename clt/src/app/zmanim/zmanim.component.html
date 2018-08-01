@@ -1,5 +1,6 @@
   
-<div dir="rtl" class="container">
+<div>
+<div *ngIf="zmanimOutput != undefined" dir="rtl" class="container">
   
   <div class="form-group">
     <select [(ngModel)]="latLng" class="form-control" style="max-width: 150px;margin: auto;" (change)="locationChange($event.target.value)">
@@ -9,7 +10,7 @@
   
   <input dir="rtl" style="max-width: 150px;margin: auto;" [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="date = $event" type="date" class="form-control" (ngModelChange)="dateChange()">
   
-  <div class="row" *ngIf="zmanimOutput != undefined">
+  <div class="row">
     <div class="col-sm-6 container">
       <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('alot_hashahar','he')}}</span><span class="value ng-binding">{{zmanimOutput.alotHashahar}}</span></div>
       <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('netz','he')}}</span><span class="value ng-binding">{{zmanimOutput.sunrise}}</span></div>
@@ -24,4 +25,6 @@
         <span class="value ng-binding">{{zmanimOutput.shaaZmanit}}</span></div>    
     </div>
   </div>
+</div>
+<div *ngIf="zmanimOutput == undefined" class="mdl-spinner mdl-js-spinner is-active spinner"></div>
 </div>

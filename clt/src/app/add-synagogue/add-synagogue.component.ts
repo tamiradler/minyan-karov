@@ -16,7 +16,7 @@ import { AddMinyanComponent } from '../add-minyan/add-minyan.component';
 export class AddSynagogueComponent implements OnInit {
   synagogue: Synagogue = new Synagogue();
   minyanIdCounter: number = 0;
-  latLng: string = '32.086718,34.789760';
+  
   errors: String[] = [];
   @ViewChild(CheckSynagogueAddressComponent) checkSynagogueAddressComponent: CheckSynagogueAddressComponent;
   @ViewChildren(AddMinyanComponent) addMinyanComponents: AddMinyanComponent[];

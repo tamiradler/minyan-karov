@@ -14,6 +14,7 @@ export class ZmanimComponent implements OnInit {
   date: Date = new Date();
   zmanimOutput: ZmanimOutput;
   self: ZmanimComponent = this;
+  latLng: string = 'NON';
 
   constructor(
     private http: HttpClient,
@@ -58,7 +59,8 @@ export class ZmanimComponent implements OnInit {
 
 
   handleError(error, self: ZmanimComponent) {
-    self.getZmanim('32.086718,34.789760');
+    this.latLng = '32.086718,34.789760';
+    self.getZmanim(this.latLng);
   }
 
 
