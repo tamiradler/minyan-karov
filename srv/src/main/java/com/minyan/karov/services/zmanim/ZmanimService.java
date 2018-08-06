@@ -57,9 +57,10 @@ public class ZmanimService
 	
 	
 	@CrossOrigin
-	@GetMapping("/getV")
-	String getZmanim()
+	@GetMapping("/getV/{latLng}")
+	boolean getZmanim(@PathVariable(value="latLng") String latLng)
 	{
-		return System.getenv("TIME_ZONE_DB_KEY");
+		Zmanim zmanim = new Zmanim();
+		return zmanim.contains(latLng, Zmanim.HAIFA_LAT_LNG);
 	}
 }

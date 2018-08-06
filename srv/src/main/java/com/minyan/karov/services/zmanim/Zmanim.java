@@ -89,6 +89,34 @@ public class Zmanim {
     }
     
     
+    
+    /**
+     * 
+     * @return
+     */
+    public double getKnisatShabat() {
+    	double day = computeDay();
+        double sunset = computeSunrise(day, false);
+        double tosefetShabat = 60.0*21.0;
+        String latLng = String.valueOf(latitude) + "," + String.valueOf(longitude);
+        if (contains(latLng, HAIFA_LAT_LNG)) {
+        	tosefetShabat = 60.0*30.0;
+        } else if (contains(latLng, JERUSALEM_LAT_LNG)) {
+        	tosefetShabat = 60.0*40.0;
+        }
+        return sunset - tosefetShabat;
+    }
+    
+    
+    /**
+     * 
+     * @return
+     */
+    public String getKnisatShabatTime() {
+        return secoundsToTime(getKnisatShabat());
+    }
+    
+    
     public String getAlotHashahar()
     {
     	double day = computeDay();
@@ -303,5 +331,67 @@ public class Zmanim {
     public double getYear() {
         return year;
     }
+    
+    
+    
+    
+    /**
+     * Return true if the given point is contained inside the boundary.
+     * See: http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+     * @param test The point to check
+     * @return true if the point is inside the boundary, false otherwise
+     *
+     */
+    public boolean contains(String latLng, String [] points) {
+    	int i;
+    	int j;
+    	boolean result = false;
+	    for (i = 0, j = points.length - 1; i < points.length; j = i++) {
+	        if ((Double.parseDouble(points[i].split(",")[1]) 
+	        				> 
+	        		Double.parseDouble(latLng.split(",")[1])
+	        				) != (
+	        						Double.parseDouble(points[j].split(",")[1])
+	        								> 
+	        						Double.parseDouble(latLng.split(",")[1])
+	        								) &&
+	            (
+	            		Double.parseDouble(latLng.split(",")[0]) 
+	            		< (Double.parseDouble(points[j].split(",")[0]) 
+	            				- Double.parseDouble(points[i].split(",")[0])) 
+	            		* (Double.parseDouble(latLng.split(",")[1])-Double.parseDouble(points[i].split(",")[1])) / (Double.parseDouble(points[j].split(",")[1])-Double.parseDouble(points[i].split(",")[1])) + 
+	            				Double.parseDouble(points[i].split(",")[0]))) 
+	        {
+	        	result = !result;
+	        }
+      	}
+      
+      
+      	return result;
+	}
+    
+    
+    public static final String [] HAIFA_LAT_LNG = {"32.837499,34.980379",
+    		"32.827164,34.954101",
+    		"32.824642,34.952667",
+    		"32.784712,34.950542",
+    		"32.756175,34.990149",
+    		"32.755957,35.025424",
+    		"32.788867,35.080702",
+    		"32.843623,35.082072"};
+    
+    public static final String [] JERUSALEM_LAT_LNG = {
+		    "31.846793,35.241139",
+		    "31.826828,35.180927",
+		    "31.794187,35.174316",
+		    "31.785157,35.153497",
+		    "31.775301,35.147856",
+		    "31.740835,35.165761",
+		    "31.724059,35.187730",
+		    "31.727105,35.209577",
+		    "31.717297,35.218681",
+		    "31.722768,35.234582",
+		    "31.821753,35.281044",
+		    "31.848733,35.245594"};
 }
 
