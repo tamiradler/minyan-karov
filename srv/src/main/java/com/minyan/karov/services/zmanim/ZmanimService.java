@@ -52,6 +52,7 @@ public class ZmanimService
 		zmanimOutput.setShaaZmanit(zmanim.getShaaZmanitTime());
 		zmanimOutput.setTzetHkohavim(zmanim.getTzetHkohavim());
 		zmanimOutput.setAlotHashahar(zmanim.getAlotHashahar());
+		zmanimOutput.setKnisatShabat(zmanim.getKnisatShabatTime());
 		return getZmanimOutput;
 	}
 	
