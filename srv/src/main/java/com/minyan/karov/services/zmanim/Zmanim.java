@@ -94,6 +94,27 @@ public class Zmanim {
      * 
      * @return
      */
+    public double getTzetShabat() {
+        double tosefetShabat = 60.0*21.0;
+        return getTzetHkohavim() + tosefetShabat;
+    }
+    
+    
+    
+    /**
+     * 
+     * @return
+     */
+    public String getTzetShabatTime() {
+        return secoundsToTime(getTzetShabat());
+    }
+    
+    
+    
+    /**
+     * 
+     * @return
+     */
     public double getKnisatShabat() {
     	double day = computeDay();
         double sunset = computeSunrise(day, false);
@@ -129,7 +150,7 @@ public class Zmanim {
      * 
      * @return
      */
-    public String getTzetHkohavim()
+    public double getTzetHkohavim()
     {
     	double day = computeDay();
         double sunset = computeSunrise(day, false);
@@ -146,7 +167,17 @@ public class Zmanim {
         {
         	tzetHkohavim += dakaZmanit*18.0; 
         }
-        return secoundsToTime(tzetHkohavim);
+        return tzetHkohavim;
+    }
+    
+    
+    /**
+     * 
+     * @return
+     */
+    public String getTzetHkohavimTime()
+    {
+        return secoundsToTime(getTzetHkohavim());
     }
     
     

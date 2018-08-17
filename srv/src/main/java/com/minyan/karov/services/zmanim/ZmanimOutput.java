@@ -16,6 +16,16 @@ public class ZmanimOutput
 	
 	private String knisatShabat;
 	
+	private String tzetShabat;
+	
+	public String getTzetShabat() {
+		return tzetShabat;
+	}
+
+	public void setTzetShabat(String tzetShabat) {
+		this.tzetShabat = tzetShabat;
+	}
+
 	public String getKnisatShabat() {
 		return knisatShabat;
 	}

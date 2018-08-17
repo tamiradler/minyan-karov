@@ -50,9 +50,10 @@ public class ZmanimService
 		zmanimOutput.setSunrise(zmanim.getSunriseTime());
 		zmanimOutput.setSunset(zmanim.getSunsetTime());
 		zmanimOutput.setShaaZmanit(zmanim.getShaaZmanitTime());
-		zmanimOutput.setTzetHkohavim(zmanim.getTzetHkohavim());
+		zmanimOutput.setTzetHkohavim(zmanim.getTzetHkohavimTime());
 		zmanimOutput.setAlotHashahar(zmanim.getAlotHashahar());
 		zmanimOutput.setKnisatShabat(zmanim.getKnisatShabatTime());
+		zmanimOutput.setTzetShabat(zmanim.getTzetShabatTime());
 		return getZmanimOutput;
 	}
 	

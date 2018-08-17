@@ -12,4 +12,6 @@ export class ZmanimOutput {
 	alotHashahar: string;
 
 	knisatShabat: string;
+
+	tzetShabat: string;
 }
