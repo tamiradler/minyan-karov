@@ -9,7 +9,7 @@
   </div>
   
   <input dir="rtl" style="max-width: 150px;margin: auto;" [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="date = $event" type="date" class="form-control" (ngModelChange)="dateChange()">
-  
+  <hr>
   <div class="row">
     <div class="col-sm-6 container">
       <div class="clfAfter times-element"><span class="name ng-binding">{{stringsService.getString('alot_hashahar','he')}}</span><span class="value ng-binding">{{zmanimOutput.alotHashahar}}</span></div>

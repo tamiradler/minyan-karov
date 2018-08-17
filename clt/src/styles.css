@@ -18,6 +18,8 @@ body, html {
 .times-element{
   padding:0 9px 9px;
   max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .times-element .name{
   float:right;
