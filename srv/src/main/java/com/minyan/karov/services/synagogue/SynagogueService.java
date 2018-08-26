@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minyan.karov.dao.DatastoreDao;
@@ -36,7 +37,7 @@ public class SynagogueService {
 	
 	@CrossOrigin
 	@GetMapping("/getSynagogue/{synagogueId}")
-  	public GetAllSynagoguesOutput getSynagogues(@PathVariable(value="synagogueId") String synagogueId)
+  	public GetAllSynagoguesOutput getSynagogue(@PathVariable(value="synagogueId") String synagogueId)
 	{
 		GetAllSynagoguesOutput getAllSynagoguesOutput = new GetAllSynagoguesOutput();
 		try 
@@ -68,7 +69,7 @@ public class SynagogueService {
 	
 	@CrossOrigin
 	@GetMapping("/getAllSynagogues")
-  	public GetAllSynagoguesOutput getAllSynagogues()
+  	public GetAllSynagoguesOutput getAllSynagogues(@RequestParam(required = false) String minyanType)
 	{
 		GetAllSynagoguesOutput getAllSynagoguesOutput = new GetAllSynagoguesOutput();
 		try 
@@ -80,6 +81,8 @@ public class SynagogueService {
 			{
 				synagogue.setMinyans(synagogueIdToMinyan.get(synagogue.getSynagogueId()));
 			}
+			
+			
 			
 			getAllSynagoguesOutput.setSynagogues(synagogues);
 		}
