@@ -4,5 +4,8 @@
   <select class="form-control">
     <option *ngFor="let stringObj of stringService.getStringObjArray('minyanTypesForFiltering')">{{stringObj['he']}}</option>
   </select>
-  <div>נוסח</div>
+  <div>{{stringService.getString('nosach','he')}}</div>
+  <select class="form-control">
+    <option *ngFor="let stringObj of stringService.getStringObjArray('minyanTypesForFiltering')">{{stringObj['he']}}</option>
+  </select>
 </div>

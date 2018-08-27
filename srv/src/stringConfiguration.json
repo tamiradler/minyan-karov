@@ -193,6 +193,24 @@
       "code": "ashkenaz"
     }
   ],
+  "nosachArrayForFilter": [
+    {
+      "he": "הכל",
+      "code": "all"
+    },
+    {
+      "he": "נוסח אחיד",
+      "code": "nosach_ahid"
+    },
+    {
+      "he": "עדות המזרח",
+      "code": "edot_hamizrach"
+    },
+    {
+      "he": "אשכנז",
+      "code": "ashkenaz"
+    }
+  ],
   "minyanTypes": [
     {
       "he": "שחרית",
