@@ -204,6 +204,24 @@
       "code": "arvit"
     }
   ],
+  "minyanTypesForFiltering": [
+    {
+      "he": "הכל",
+      "code": "all"
+    },
+    {
+      "he": "שחרית",
+      "code": "shharit"
+    },
+    {
+      "he": "מנחה",
+      "code": "mincha"
+    },
+    {
+      "he": "ערבית",
+      "code": "arvit"
+    }
+  ],
   "timeAtWeek": [
     {
       "he": "ימות החול",

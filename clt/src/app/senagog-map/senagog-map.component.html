@@ -1,5 +1,8 @@
 <div id="gmap" style="height: 93%;width: 100%;"></div>
 <div class="floating-menu">
   <div>סוג מניין</div>
+  <select class="form-control">
+    <option *ngFor="let stringObj of stringService.getStringObjArray('minyanTypes')">{{stringObj['he']}}</option>
+  </select>
   <div>נוסח</div>
 </div>
