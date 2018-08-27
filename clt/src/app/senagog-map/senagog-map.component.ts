@@ -25,7 +25,9 @@ export class SenagogMapComponent implements AfterViewInit   {
     var mapProp = { 
       center: telAviv, 
       zoom: 9, 
-      mapTypeId: google.maps.MapTypeId.ROADMAP 
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControl: false,
+      fullscreenControl:false
     };
     
     var divMap = document.getElementById('gmap');
