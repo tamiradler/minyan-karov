@@ -134,6 +134,9 @@
   "minutes": {
     "he": "דקות"
   },
+  "minyanType": {
+  	"he": "סוג מניין"
+  },
   "zmanim_locations": [
     {
       "he": "מיקום נוכחי",
