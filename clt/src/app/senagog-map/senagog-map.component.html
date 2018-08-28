@@ -1,7 +1,10 @@
 <div id="gmap" style="height: 93%;width: 100%;"></div>
 
 <div class="floating-menu">
-  <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo" style="text-decoration: none;"><b>{{stringService.getString('filtering','he')}}</b></a>
+  <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo" style="text-decoration: none;">  
+    <b>{{stringService.getString('filtering','he')}}</b>
+    <i style="font-size: 15px" class="material-icons">filter_list</i>
+  </a>
   <div id="collapseTwo" class="collapse" data-parent="#accordion">
     <div>{{stringService.getString('minyanType','he')}}</div>
     <select class="form-control">
