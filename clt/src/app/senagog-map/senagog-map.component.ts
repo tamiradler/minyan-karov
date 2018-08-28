@@ -6,6 +6,7 @@ import { GetAllSynagoguesOutput } from '../GetAllSynagoguesOutput';
 import { Synagogue } from '../Synagogue';
 import { } from '@types/googlemaps';
 import { StringsService } from '../strings.service';
+import { FilteringSynagogueObj } from './filtering-synagogue-obj';
 
 @Component({
   selector: 'app-senagog-map',
@@ -14,11 +15,15 @@ import { StringsService } from '../strings.service';
 })
 export class SenagogMapComponent implements AfterViewInit   {
   map: google.maps.Map;
+  filteringSynagogueObj: FilteringSynagogueObj = new FilteringSynagogueObj();
 
   constructor(private http: HttpClient, public stringService: StringsService) { } 
 
 
   ngAfterViewInit() {
+    this.filteringSynagogueObj.minyanType='all';
+    this.filteringSynagogueObj.nosach='all';
+
     //Tel Aviv - 32.086718,34.789760
     var telAviv = new google.maps.LatLng(32.086718, 34.789760);
 
