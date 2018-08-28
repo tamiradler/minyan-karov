@@ -1,12 +1,18 @@
 <div id="gmap" style="height: 93%;width: 100%;"></div>
+
 <div class="floating-menu">
-  <div>{{stringService.getString('minyanType','he')}}</div>
-  <select class="form-control">
-    <option *ngFor="let stringObj of stringService.getStringObjArray('minyanTypesForFiltering')">{{stringObj['he']}}</option>
-  </select>
-  <div>{{stringService.getString('nosach','he')}}</div>
-  <select class="form-control">
-    <option *ngFor="let stringObj of stringService.getStringObjArray('nosachArrayForFilter')">{{stringObj['he']}}</option>
-  </select>
-  <button class="mdl-button mdl-js-button"><b>{{stringService.getString('filter','he')}}</b></button>
+        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                sanen
+              </a>
+  <div id="collapseTwo" class="collapse" data-parent="#accordion">
+    <div>{{stringService.getString('minyanType','he')}}</div>
+    <select class="form-control">
+      <option *ngFor="let stringObj of stringService.getStringObjArray('minyanTypesForFiltering')">{{stringObj['he']}}</option>
+    </select>
+    <div>{{stringService.getString('nosach','he')}}</div>
+    <select class="form-control">
+      <option *ngFor="let stringObj of stringService.getStringObjArray('nosachArrayForFilter')">{{stringObj['he']}}</option>
+    </select>
+    <button class="mdl-button mdl-js-button"><b>{{stringService.getString('filter','he')}}</b></button>
+  </div>
 </div>

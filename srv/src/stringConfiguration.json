@@ -2,6 +2,9 @@
   "filter": {
     "he": "סנן"
   },
+  "filtering": {
+    "he": "סינן"
+  },
   "knisat_shabat": {
     "he": "כניסת שבת"
   },
