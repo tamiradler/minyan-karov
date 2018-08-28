@@ -7,8 +7,8 @@
   </a>
   <div id="collapseTwo" class="collapse" data-parent="#accordion">
     <div>{{stringService.getString('minyanType','he')}}</div>
-    <select class="form-control">
-      <option *ngFor="let stringObj of stringService.getStringObjArray('minyanTypesForFiltering')">{{stringObj['he']}}</option>
+    <select class="form-control" [(ngModel)]="filteringSynagogueObj.minyanType">
+      <option [ngValue]="stringObj.code" *ngFor="let stringObj of stringService.getStringObjArray('minyanTypesForFiltering')">{{stringObj['he']}}</option>
     </select>
     <div>{{stringService.getString('nosach','he')}}</div>
     <select class="form-control">

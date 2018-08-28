@@ -17,12 +17,13 @@ export class SenagogMapComponent implements AfterViewInit   {
   map: google.maps.Map;
   filteringSynagogueObj: FilteringSynagogueObj = new FilteringSynagogueObj();
 
-  constructor(private http: HttpClient, public stringService: StringsService) { } 
+  constructor(private http: HttpClient, public stringService: StringsService) { 
+    this.filteringSynagogueObj.minyanType='all';
+    this.filteringSynagogueObj.nosach='all';
+  } 
 
 
   ngAfterViewInit() {
-    this.filteringSynagogueObj.minyanType='all';
-    this.filteringSynagogueObj.nosach='all';
 
     //Tel Aviv - 32.086718,34.789760
     var telAviv = new google.maps.LatLng(32.086718, 34.789760);
