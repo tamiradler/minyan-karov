@@ -8,7 +8,5 @@
   <select class="form-control">
     <option *ngFor="let stringObj of stringService.getStringObjArray('nosachArrayForFilter')">{{stringObj['he']}}</option>
   </select>
-  <button class="mdl-button mdl-js-button">
-        Button
-      </button>
+  <button class="mdl-button mdl-js-button"><b>{{stringService.getString('filter','he')}}</b></button>
 </div>
