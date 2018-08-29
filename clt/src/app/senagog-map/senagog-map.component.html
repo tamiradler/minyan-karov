@@ -14,6 +14,6 @@
     <select class="form-control" [(ngModel)]="filteringSynagogueObj.nosach">
       <option [ngValue]="stringObj.code" *ngFor="let stringObj of stringService.getStringObjArray('nosachArrayForFilter')">{{stringObj['he']}}</option>
     </select>
-    <button class="mdl-button mdl-js-button" (click)="drowSynagoguesOnMap()"><b>{{stringService.getString('filter','he')}}</b></button>
+    <button class="mdl-button mdl-js-button" (click)="drowSynagoguesOnMap()"><b>{{stringService.getString('search_again','he')}}</b></button>
   </div>
 </div>
