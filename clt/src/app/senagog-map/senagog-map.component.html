@@ -11,9 +11,9 @@
       <option [ngValue]="stringObj.code" *ngFor="let stringObj of stringService.getStringObjArray('minyanTypesForFiltering')">{{stringObj['he']}}</option>
     </select>
     <div>{{stringService.getString('nosach','he')}}</div>
-    <select class="form-control">
-      <option *ngFor="let stringObj of stringService.getStringObjArray('nosachArrayForFilter')">{{stringObj['he']}}</option>
+    <select class="form-control" [(ngModel)]="filteringSynagogueObj.nosach">
+      <option [ngValue]="stringObj.code" *ngFor="let stringObj of stringService.getStringObjArray('nosachArrayForFilter')">{{stringObj['he']}}</option>
     </select>
-    <button class="mdl-button mdl-js-button"><b>{{stringService.getString('filter','he')}}</b></button>
+    <button class="mdl-button mdl-js-button" (click)="drowSynagoguesOnMap()"><b>{{stringService.getString('filter','he')}}</b></button>
   </div>
 </div>

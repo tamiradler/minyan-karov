@@ -69,7 +69,9 @@ public class SynagogueService {
 	
 	@CrossOrigin
 	@GetMapping("/getAllSynagogues")
-  	public GetAllSynagoguesOutput getAllSynagogues(@RequestParam(required = false) String minyanType)
+  	public GetAllSynagoguesOutput getAllSynagogues(
+  			@RequestParam(required = false) String minyanType,
+  			@RequestParam(required = false) String nosach)
 	{
 		GetAllSynagoguesOutput getAllSynagoguesOutput = new GetAllSynagoguesOutput();
 		try 

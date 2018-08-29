@@ -16,6 +16,7 @@ import { FilteringSynagogueObj } from './filtering-synagogue-obj';
 export class SenagogMapComponent implements AfterViewInit   {
   map: google.maps.Map;
   filteringSynagogueObj: FilteringSynagogueObj = new FilteringSynagogueObj();
+  markers:any[] = [];
 
   constructor(private http: HttpClient, public stringService: StringsService) { 
     this.filteringSynagogueObj.minyanType='all';
@@ -44,11 +45,14 @@ export class SenagogMapComponent implements AfterViewInit   {
 
 
   getAllSynagogues() {
-    return this.http.get<GetAllSynagoguesOutput>(environment.hostUrl+'getAllSynagogues');
+    let query: string = 'minyanType=' + this.filteringSynagogueObj.minyanType;
+    query += '&nosach=' + this.filteringSynagogueObj.nosach;
+    return this.http.get<GetAllSynagoguesOutput>(environment.hostUrl+'getAllSynagogues' + '?' + query);
   }
   
   
   drowSynagoguesOnMap() {
+    this.clearMarkers();
     this.getAllSynagogues().subscribe(res => 
       {
         res.synagogues.forEach(synagogue => {
@@ -56,6 +60,21 @@ export class SenagogMapComponent implements AfterViewInit   {
         });
       });
   }
+
+
+
+  // Sets the map on all markers in the array.
+  setMapOnAll(map) {
+    for (var i = 0; i < this.markers.length; i++) {
+      this.markers[i].setMap(map);
+    }
+  }
+
+  // Removes the markers from the map, but keeps them in the array.
+  clearMarkers() {
+    this.setMapOnAll(null);
+  }
+
 
 
   drowSynagogueOnMap(synagogue: Synagogue) {
@@ -80,6 +99,8 @@ export class SenagogMapComponent implements AfterViewInit   {
     marker.addListener('click', function() {
       infowindow.open(this.map, marker);
     });
+
+    this.markers.push(marker);
   }
 
 
