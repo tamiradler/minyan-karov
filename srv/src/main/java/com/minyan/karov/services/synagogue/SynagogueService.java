@@ -45,7 +45,7 @@ public class SynagogueService {
 			Entry<String, String> pair = new AbstractMap.SimpleEntry<String, String>("synagogueId", synagogueId);
 			List <Synagogue> synagogues = datastoreDao.getEntity(Synagogue.class, pair);
 			List <String> synagogueIds = getSynagogueIds(synagogues);
-			Map<String, List<Minyan>> synagogueIdToMinyan = getSynagogueIdToMinyan(synagogueIds);
+			Map<String, List<Minyan>> synagogueIdToMinyan = getSynagogueIdToMinyan(synagogueIds, null);
 			for (Synagogue synagogue : synagogues) 
 			{
 				synagogue.setMinyans(synagogueIdToMinyan.get(synagogue.getSynagogueId()));
@@ -78,7 +78,10 @@ public class SynagogueService {
 		{
 			List <Synagogue> synagogues = datastoreDao.getEntity(Synagogue.class);
 			List <String> synagogueIds = getSynagogueIds(synagogues);
-			Map<String, List<Minyan>> synagogueIdToMinyan = getSynagogueIdToMinyan(synagogueIds);
+			
+			MinyanParameters minyanParameters = new MinyanParameters();
+			
+			Map<String, List<Minyan>> synagogueIdToMinyan = getSynagogueIdToMinyan(synagogueIds, minyanParameters);
 			for (Synagogue synagogue : synagogues) 
 			{
 				synagogue.setMinyans(synagogueIdToMinyan.get(synagogue.getSynagogueId()));
@@ -106,10 +109,10 @@ public class SynagogueService {
 	
 	
 	
-	private Map<String, List<Minyan>> getSynagogueIdToMinyan(List<String> synagogueIds) 
+	private Map<String, List<Minyan>> getSynagogueIdToMinyan(List<String> synagogueIds, MinyanParameters minyanParameters) 
 	{
 		Map <String, List<Minyan>> synagogueIdToMinyan = new HashMap<>();
-		List <Minyan> minyans = getMinyans(synagogueIds);
+		List <Minyan> minyans = getMinyans(synagogueIds, minyanParameters);
 		for (Minyan minyan : minyans) 
 		{
 			List<Minyan> list = synagogueIdToMinyan.get(minyan.getSenagogId());
@@ -126,7 +129,7 @@ public class SynagogueService {
 
 
 
-	private List<Minyan> getMinyans(List<String> synagogueIds) 
+	private List<Minyan> getMinyans(List<String> synagogueIds, MinyanParameters minyanParameters) 
 	{
 		
 		List<Entry<String, String>> pairs = new ArrayList<>();// = new AbstractMap.SimpleEntry<String, String>("userId", userId);
