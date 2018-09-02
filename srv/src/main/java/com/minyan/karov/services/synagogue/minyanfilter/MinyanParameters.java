@@ -1,4 +1,4 @@
-package com.minyan.karov.services.synagogue;
+package com.minyan.karov.services.synagogue.minyanfilter;
 
 public class MinyanParameters 
 {

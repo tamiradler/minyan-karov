@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,8 @@ import com.minyan.karov.dao.IdGenerator;
 import com.minyan.karov.entities.Minyan;
 import com.minyan.karov.entities.Synagogue;
 import com.minyan.karov.entities.validators.SynagogueValidator;
+import com.minyan.karov.services.synagogue.minyanfilter.MinyanFiltersService;
+import com.minyan.karov.services.synagogue.minyanfilter.MinyanParameters;
 
 @RestController
 public class SynagogueService {
@@ -80,6 +83,8 @@ public class SynagogueService {
 			List <String> synagogueIds = getSynagogueIds(synagogues);
 			
 			MinyanParameters minyanParameters = new MinyanParameters();
+			minyanParameters.setMinyanType(minyanType);
+			minyanParameters.setNosach(nosach);
 			
 			Map<String, List<Minyan>> synagogueIdToMinyan = getSynagogueIdToMinyan(synagogueIds, minyanParameters);
 			for (Synagogue synagogue : synagogues) 
@@ -127,11 +132,11 @@ public class SynagogueService {
 	}
 
 
-
+	@Autowired
+	private ApplicationContext context;
 
 	private List<Minyan> getMinyans(List<String> synagogueIds, MinyanParameters minyanParameters) 
 	{
-		
 		List<Entry<String, String>> pairs = new ArrayList<>();// = new AbstractMap.SimpleEntry<String, String>("userId", userId);
 		
 		for (String synagogueId : synagogueIds) 
@@ -139,7 +144,13 @@ public class SynagogueService {
 			pairs.add(new AbstractMap.SimpleEntry<String, String>("senagogId", synagogueId));
 		}
 
-		return datastoreDao.getEntity(Minyan.class, pairs.toArray(new Entry[pairs.size()]));
+		List<Minyan> minyans = datastoreDao.getEntity(Minyan.class, pairs.toArray(new Entry[pairs.size()]));
+		
+		MinyanFiltersService minyanFiltersService = context.getBean(MinyanFiltersService.class);
+		minyanFiltersService.setMinyanParameters(minyanParameters);
+		minyanFiltersService.setMinyans(minyans);
+		
+		return minyanFiltersService.getMinyans();
 	}
 
 
