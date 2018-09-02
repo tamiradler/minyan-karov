@@ -2,6 +2,7 @@ package com.minyan.karov.services.synagogue.minyanfilter;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ public class MinyanFiltersService
 
 	private MinyanParameters minyanParameters;
 	
+	@Autowired
 	List<MinyanFilter> minyanFilters;
 	
 	public MinyanParameters getMinyanParameters() 
@@ -39,6 +41,9 @@ public class MinyanFiltersService
 	
 	public void execute()
 	{
-		
+		if (minyanParameters == null)
+		{
+			return;
+		}
 	}
 }

@@ -150,6 +150,8 @@ public class SynagogueService {
 		minyanFiltersService.setMinyanParameters(minyanParameters);
 		minyanFiltersService.setMinyans(minyans);
 		
+		minyanFiltersService.execute();
+		
 		return minyanFiltersService.getMinyans();
 	}
 
