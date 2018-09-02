@@ -1,6 +1,5 @@
 package com.minyan.karov.services.synagogue.minyanfilter;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class MinyanFiltersService
 	private MinyanParameters minyanParameters;
 	
 	@Autowired
-	List<MinyanFilter> minyanFilters;
+	private List<Filter<Minyan, MinyanParameters>> minyanFilters;
 	
 	public MinyanParameters getMinyanParameters() 
 	{
@@ -47,25 +46,11 @@ public class MinyanFiltersService
 			return;
 		}
 		
-		for (Iterator<Minyan> minyanIterator = minyans.iterator(); minyanIterator.hasNext(); ) 
-		{
-			Minyan minyan = minyanIterator.next();
-			if (!isMinyanValid(minyan))
-			{
-				minyanIterator.remove();
-			}
-		}
-	}
-
-	private boolean isMinyanValid(Minyan minyan) 
-	{
-		for (MinyanFilter minyanFilter : minyanFilters) 
-		{
-			if (!minyanFilter.isValied(minyanParameters, minyan))
-			{
-				return false;
-			}
-		}
-		return true;
+		FiltersService<Minyan, MinyanParameters> filtersService = new FiltersService<>();
+		filtersService.setArgs(minyanParameters);
+		filtersService.setElementsToFilter(minyans);
+		filtersService.setFilters(minyanFilters);
+		filtersService.execute();
+		minyans = filtersService.getFilteredElements();
 	}
 }

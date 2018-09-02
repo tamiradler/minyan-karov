@@ -2,7 +2,6 @@ package com.minyan.karov.services.synagogue.minyanfilter;
 
 import com.minyan.karov.entities.Minyan;
 
-public interface MinyanFilter 
+public interface MinyanFilter extends Filter<Minyan, MinyanParameters>
 {
-	boolean isValied(MinyanParameters minyanParameters, Minyan minyan);
 }
