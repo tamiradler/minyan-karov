@@ -24,6 +24,7 @@ import com.minyan.karov.entities.Synagogue;
 import com.minyan.karov.entities.validators.SynagogueValidator;
 import com.minyan.karov.services.synagogue.minyanfilter.MinyanFiltersService;
 import com.minyan.karov.services.synagogue.minyanfilter.MinyanParameters;
+import com.minyan.karov.services.synagogue.synagoguefilter.SynagogueFiltersService;
 
 @RestController
 public class SynagogueService {
@@ -92,9 +93,12 @@ public class SynagogueService {
 				synagogue.setMinyans(synagogueIdToMinyan.get(synagogue.getSynagogueId()));
 			}
 			
+			SynagogueFiltersService synagogueFiltersService = context.getBean(SynagogueFiltersService.class);
+			synagogueFiltersService.setMinyanParameters(minyanParameters);
+			synagogueFiltersService.setSynagogues(synagogues);
+			synagogueFiltersService.execute();
 			
-			
-			getAllSynagoguesOutput.setSynagogues(synagogues);
+			getAllSynagoguesOutput.setSynagogues(synagogueFiltersService.getSynagogues());
 		}
 		catch (Exception e) 
 		{
