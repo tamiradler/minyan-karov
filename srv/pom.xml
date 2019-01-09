@@ -17,6 +17,18 @@
 		<version>1.5.10.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
+	<profiles>
+		<profile>
+		    <id>SUREFIRE-1588</id>
+		    <activation>
+		        <activeByDefault>true</activeByDefault>
+		    </activation>
+		    <properties>
+		        <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+		    </properties>
+		</profile>
+	</profiles>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
