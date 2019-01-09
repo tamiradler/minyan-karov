@@ -18,6 +18,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
+	<!-- WA from - https://stackoverflow.com/questions/53010200/maven-surefire-could-not-find-forkedbooter-class/53128507 -->
 	<profiles>
 		<profile>
 		    <id>SUREFIRE-1588</id>
